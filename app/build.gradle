@@ -39,6 +39,8 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -84,4 +86,8 @@ dependencies {
     implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
     // 轮播图
     implementation 'com.github.zhpanvip:BannerViewPager:3.1.5'
+    // 下拉选择框
+    implementation 'com.github.arcadefire:nice-spinner:1.4.4'
+    // 底部导航栏
+    implementation 'com.github.armcha:SpaceNavigationView:1.6.0'
 }

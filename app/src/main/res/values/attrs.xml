@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ShapeButton">
+        <!--shape模式-->
+        <attr name="sb_shapeMode" format="enum">
+            <enum name="rectangle" value="0" />
+            <enum name="oval" value="1" />
+            <enum name="line" value="2" />
+            <enum name="ring" value="3" />
+        </attr>
+        <!--填充颜色-->
+        <attr name="sb_fillColor" format="color" />
+        <!--按压颜色-->
+        <attr name="sb_pressedColor" format="color" />
+        <!--描边颜色-->
+        <attr name="sb_strokeColor" format="color" />
+        <!--描边宽度-->
+        <attr name="sb_strokeWidth" format="dimension" />
+        <!--圆角大小-->
+        <attr name="sb_cornerRadius" format="dimension" />
+        <!--圆角位置-->
+        <attr name="sb_cornerPosition">
+            <flag name="topLeft" value="1" />
+            <flag name="topRight" value="2" />
+            <flag name="bottomRight" value="4" />
+            <flag name="bottomLeft" value="8" />
+        </attr>
+        <!--是否开启动效-->
+        <attr name="sb_activeEnable" format="boolean" />
+        <!--drawable位置-->
+        <attr name="sb_drawablePosition" format="enum">
+            <enum name="left" value="0" />
+            <enum name="top" value="1" />
+            <enum name="right" value="2" />
+            <enum name="bottom" value="3" />
+        </attr>
+        <!--渐变开始颜色-->
+        <attr name="sb_startColor" format="color" />
+        <!--渐变结束颜色-->
+        <attr name="sb_endColor" format="color" />
+        <!--渐变方向-->
+        <attr name="sb_orientation" format="enum">
+            <enum name="TOP_BOTTOM" value="0" />
+            <enum name="TR_BL" value="1" />
+            <enum name="RIGHT_LEFT" value="2" />
+            <enum name="BR_TL" value="3" />
+            <enum name="BOTTOM_TOP" value="4" />
+            <enum name="BL_TR" value="5" />
+            <enum name="LEFT_RIGHT" value="6" />
+            <enum name="TL_BR" value="7" />
+        </attr>
+        <attr name="sb_touchAdd" format="dimension" />
+        <attr name="sb_touchAddBottom" format="dimension" />
+        <attr name="sb_touchAddLeft" format="dimension" />
+        <attr name="sb_touchAddRight" format="dimension" />
+        <attr name="sb_touchAddTop" format="dimension" />
+        <attr name="sb_centerText" format="boolean" />
+        <attr name="sb_shadow_dx" format="dimension" />
+        <attr name="sb_shadow_dy" format="dimension" />
+        <attr name="sb_shadow_blur_radius" format="dimension" />
+        <attr name="sb_shadow_color" format="color" />
+        <attr name="sb_exclude_dx" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="ShapeConstraintLayout">
+        <!--shape模式-->
+        <attr name="sc_shapeMode" format="enum">
+            <enum name="rectangle" value="0" />
+            <enum name="oval" value="1" />
+            <enum name="line" value="2" />
+            <enum name="ring" value="3" />
+        </attr>
+        <!--填充颜色-->
+        <attr name="sc_fillColor" format="color" />
+        <!--按压颜色-->
+        <attr name="sc_pressedColor" format="color" />
+        <!--描边颜色-->
+        <attr name="sc_strokeColor" format="color" />
+        <!--描边宽度-->
+        <attr name="sc_strokeWidth" format="dimension" />
+        <!--圆角大小-->
+        <attr name="sc_cornerRadius" format="dimension" />
+        <!--圆角位置-->
+        <attr name="sc_cornerPosition">
+            <flag name="topLeft" value="1" />
+            <flag name="topRight" value="2" />
+            <flag name="bottomRight" value="4" />
+            <flag name="bottomLeft" value="8" />
+        </attr>
+        <!--渐变开始颜色-->
+        <attr name="sc_startColor" format="color" />
+        <!--渐变结束颜色-->
+        <attr name="sc_endColor" format="color" />
+        <!--渐变方向-->
+        <attr name="sc_orientation" format="enum">
+            <enum name="TOP_BOTTOM" value="0" />
+            <enum name="TR_BL" value="1" />
+            <enum name="RIGHT_LEFT" value="2" />
+            <enum name="BR_TL" value="3" />
+            <enum name="BOTTOM_TOP" value="4" />
+            <enum name="BL_TR" value="5" />
+            <enum name="LEFT_RIGHT" value="6" />
+            <enum name="TL_BR" value="7" />
+        </attr>
+        <attr name="sc_withElevation" format="dimension" />
+        <attr name="sc_shadow_dx" format="dimension" />
+        <attr name="sc_shadow_dy" format="dimension" />
+        <attr name="sc_shadow_blur_radius" format="dimension" />
+        <attr name="sc_shadow_color" format="color" />
+        <attr name="sc_exclude_dx" format="boolean" />
+    </declare-styleable>
+</resources>

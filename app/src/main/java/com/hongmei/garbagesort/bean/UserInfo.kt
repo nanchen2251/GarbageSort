@@ -22,3 +22,11 @@ data class UserInfo(
     var type: Int = 0,
     var username: String = ""
 ) : Parcelable
+
+object UserType{
+    const val GENERAL = 0 // 普通用户
+    const val SUPERVISOR = 1 // 监察人员
+    const val EXECUTOR = 2 // 执行人员
+    const val MANAGER = 3 // 管理人员
+    const val GOVERNMENT = 3 // 政府人员
+}

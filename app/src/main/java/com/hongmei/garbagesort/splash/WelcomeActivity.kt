@@ -6,6 +6,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.hongmei.garbagesort.MainActivity
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseActivity
+import com.hongmei.garbagesort.login.LoginActivity
 import com.hongmei.garbagesort.util.CacheUtil
 import com.hongmei.garbagesort.util.SettingUtil
 import com.zhpan.bannerview.BannerViewPager
@@ -50,27 +51,34 @@ class WelcomeActivity : BaseActivity<BaseViewModel>() {
             welcomeImage.visible()
             welcomeJumpText.visible()
             bannerViewPager.postDelayed({
-                startActivity(Intent(this, MainActivity::class.java))
+                startActivity(Intent(this, LoginActivity::class.java))
                 finish()
                 // 带点渐变动画
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             }, 3000)
             welcomeJumpText.setOnClickListener {
-                ProxyClick().toMain()
+                toLogin()
             }
         }
         welcomeJoin.setOnClickListener {
-            ProxyClick().toMain()
+            toLogin()
         }
     }
 
-    inner class ProxyClick {
-        fun toMain() {
-            CacheUtil.setFirst(false)
-            startActivity(Intent(this@WelcomeActivity, MainActivity::class.java))
-            finish()
-            //带点渐变动画
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        }
+    private fun toMain() {
+        CacheUtil.setFirst(false)
+        startActivity(Intent(this@WelcomeActivity, MainActivity::class.java))
+        finish()
+        //带点渐变动画
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
+
+    private fun toLogin() {
+        CacheUtil.setFirst(false)
+        startActivity(Intent(this@WelcomeActivity, LoginActivity::class.java))
+        finish()
+        //带点渐变动画
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+    }
+
 }
