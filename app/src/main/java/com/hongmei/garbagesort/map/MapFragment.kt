@@ -102,17 +102,17 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
     override fun onPause() {
         super.onPause()
         locationClient.stopLocation()
-        mapView.onPause()
+        mapView?.onPause()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        mapView.onSaveInstanceState(outState)
+        mapView?.onSaveInstanceState(outState)
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mapView.onDestroy()
+        mapView?.onDestroy()
         locationClient.onDestroy()
     }
 
@@ -196,7 +196,7 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
         if (marker == null) {
             return
         }
-        //终点
+        // 终点
         val end = Poi("目的地", marker.position, null)
         // 组件参数配置
         val params = AmapNaviParams(null, null, end, AmapNaviType.DRIVER, AmapPageType.ROUTE)
