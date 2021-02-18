@@ -5,16 +5,16 @@ import com.amap.api.location.AMapLocation
 import com.amap.api.location.AMapLocationClient
 import com.amap.api.location.AMapLocationClientOption
 import com.amap.api.location.AMapLocationListener
+import com.amap.api.maps.AMap
+import com.amap.api.maps.AMap.OnMarkerClickListener
 import com.amap.api.maps.CameraUpdate
 import com.amap.api.maps.CameraUpdateFactory
-import com.amap.api.maps.model.BitmapDescriptorFactory
-import com.amap.api.maps.model.CameraPosition
-import com.amap.api.maps.model.LatLng
-import com.amap.api.maps.model.MarkerOptions
+import com.amap.api.maps.model.*
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseFragment
 import com.hongmei.garbagesort.ext.appContext
 import com.hongmei.garbagesort.ext.toastError
+import com.hongmei.garbagesort.ext.toastNormal
 import kotlinx.android.synthetic.main.map_fragment.*
 import org.angmarch.views.OnSpinnerItemSelectedListener
 import kotlin.random.Random
@@ -24,7 +24,7 @@ import kotlin.random.Random
  * Date: 2021-02-02
  * Desc: 地图页面
  */
-class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener {
+class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarkerClickListener, AMap.OnInfoWindowClickListener {
     private var currentLocation: AMapLocation? = null
 
     // 测试数据 蓝垃圾桶位置
@@ -75,6 +75,8 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener {
         mapSpinner.onSpinnerItemSelectedListener = OnSpinnerItemSelectedListener { _, _, position, _ ->
             addMarkers(position)
         }
+        mapView.map.setOnMarkerClickListener(this)
+        mapView.map.addOnInfoWindowClickListener(this)
     }
 
     private fun addMarkers(position: Int) {
@@ -131,6 +133,8 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener {
             val newPoint = LatLng(center.latitude + 0.001 * Random.nextInt(-30, 30), center.longitude + 0.001 * Random.nextInt(-30, 30))
             val marker = MarkerOptions()
                 .position(newPoint)
+                .draggable(true)
+                .title("到这去")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_trash_blue))
             blueMarkerList.add(marker)
         }
@@ -138,6 +142,8 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener {
             val newPoint = LatLng(center.latitude + 0.001 * Random.nextInt(-30, 30), center.longitude + 0.001 * Random.nextInt(-30, 30))
             val marker = MarkerOptions()
                 .position(newPoint)
+                .draggable(true)
+                .title("到这去")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_trash_green))
             greenMarkerList.add(marker)
         }
@@ -145,6 +151,8 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener {
             val newPoint = LatLng(center.latitude + 0.001 * Random.nextInt(-30, 30), center.longitude + 0.001 * Random.nextInt(-30, 30))
             val marker = MarkerOptions()
                 .position(newPoint)
+                .draggable(true)
+                .title("到这去")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_trash_red))
             redMarkerList.add(marker)
         }
@@ -152,6 +160,8 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener {
             val newPoint = LatLng(center.latitude + 0.001 * Random.nextInt(-30, 30), center.longitude + 0.001 * Random.nextInt(-30, 30))
             val marker = MarkerOptions()
                 .position(newPoint)
+                .draggable(true)
+                .title("到这去")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_trash_grey))
             greyMarkerList.add(marker)
         }
@@ -169,4 +179,22 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener {
     private fun changeCamera(update: CameraUpdate) {
         mapView.map.animateCamera(update)
     }
+
+    override fun onMarkerClick(marker: Marker?): Boolean {
+        // 点击垃圾桶 marker 的回调
+        if (marker == null) {
+            return false
+        }
+        marker.showInfoWindow()
+        return true
+    }
+
+    override fun onInfoWindowClick(marker: Marker?) {
+        if (marker == null) {
+            return
+        }
+        // 点击垃圾桶的到这去的弹窗
+        toastNormal("点击了marker：${marker.position}")
+    }
+
 }
