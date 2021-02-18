@@ -17,6 +17,7 @@ import me.hgj.jetpackmvvm.ext.view.visible
 
 class WelcomeActivity : BaseActivity<BaseViewModel>() {
     private var resList = arrayOf("垃圾", "分类", "还看\n垃圾分类宝")
+    private var hasGoSecondPage = false
 
     private lateinit var bannerViewPager: BannerViewPager<String, WelcomeBannerViewHolder>
 
@@ -63,6 +64,10 @@ class WelcomeActivity : BaseActivity<BaseViewModel>() {
     }
 
     private fun toSecondPage() {
+        if (hasGoSecondPage) {
+            return
+        }
+        hasGoSecondPage = true
         if (CacheUtil.isLogin()) {
             toMain()
         } else {

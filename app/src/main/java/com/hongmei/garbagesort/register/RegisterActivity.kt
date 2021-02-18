@@ -13,7 +13,6 @@ import com.hongmei.garbagesort.ext.toastWarning
 import com.hongmei.garbagesort.login.LoginViewModel
 import com.hongmei.garbagesort.util.CacheUtil
 import kotlinx.android.synthetic.main.include_toolbar.*
-import kotlinx.android.synthetic.main.login_activity.*
 import kotlinx.android.synthetic.main.register_activity.*
 import java.util.*
 
@@ -54,14 +53,18 @@ class RegisterActivity : BaseActivity<LoginViewModel>() {
                 toastWarning("请填写确认密码")
                 return@setOnClickListener
             }
-            if (registerPwd.text != registerPwd1.text) {
+            if (registerPwd1.text.length < 6) {
+                toastWarning("密码不能小于6位！")
+                return@setOnClickListener
+            }
+            if (registerPwd.text.toString() != registerPwd1.text.toString()) {
                 toastWarning("两次输入的密码不一致")
                 return@setOnClickListener
             }
             appViewModel.userinfo.value = UserInfo(
-                username = usernameText.text.toString(),
-                nickname = "测试账号" + usernameText.text.toString(),
-                type = loginSpinner.selectedIndex
+                username = registerUsername.text.toString(),
+                nickname = "测试账号" + registerUsername.text.toString(),
+                type = registerSpinner.selectedIndex
             )
             CacheUtil.setUser(appViewModel.userinfo.value)
             startActivity(Intent(this, MainActivity::class.java))
