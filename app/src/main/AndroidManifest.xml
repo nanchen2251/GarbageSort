@@ -72,6 +72,11 @@
             android:name=".MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name="com.amap.api.navi.AmapRouteActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize|navigation"
+            android:theme="@android:style/Theme.NoTitleBar" />
     </application>
 
 </manifest>

@@ -10,11 +10,14 @@ import com.amap.api.maps.AMap.OnMarkerClickListener
 import com.amap.api.maps.CameraUpdate
 import com.amap.api.maps.CameraUpdateFactory
 import com.amap.api.maps.model.*
+import com.amap.api.navi.AmapNaviPage
+import com.amap.api.navi.AmapNaviParams
+import com.amap.api.navi.AmapNaviType
+import com.amap.api.navi.AmapPageType
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseFragment
 import com.hongmei.garbagesort.ext.appContext
 import com.hongmei.garbagesort.ext.toastError
-import com.hongmei.garbagesort.ext.toastNormal
 import kotlinx.android.synthetic.main.map_fragment.*
 import org.angmarch.views.OnSpinnerItemSelectedListener
 import kotlin.random.Random
@@ -193,8 +196,12 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
         if (marker == null) {
             return
         }
-        // 点击垃圾桶的到这去的弹窗
-        toastNormal("点击了marker：${marker.position}")
+        //终点
+        val end = Poi("目的地", marker.position, null)
+        // 组件参数配置
+        val params = AmapNaviParams(null, null, end, AmapNaviType.DRIVER, AmapPageType.ROUTE)
+        // 启动组件
+        AmapNaviPage.getInstance().showRouteActivity(appContext, params, null)
     }
 
 }
