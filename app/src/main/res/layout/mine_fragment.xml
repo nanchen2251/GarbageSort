@@ -18,9 +18,8 @@
             android:id="@+id/mineHeader"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            app:sc_endColor="@color/green_end"
-            app:sc_orientation="BL_TR"
-            app:sc_startColor="@color/green_start">
+            app:sc_fillColor="@color/green_start"
+            app:sc_orientation="BL_TR">
 
             <View
                 android:id="@+id/bgView"
@@ -214,10 +213,51 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="系统设置"
+                        android:text="主题颜色"
                         android:textColor="@color/colorBlack333"
                         android:textSize="14sp"
                         android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_right" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/mineClearCacheLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_clear_cache" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="清理缓存"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/mineCacheText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:textColor="@color/backgrounGrey"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        tools:text="1000M" />
 
                     <ImageView
                         android:layout_width="16dp"

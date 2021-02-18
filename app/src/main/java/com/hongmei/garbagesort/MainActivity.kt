@@ -43,8 +43,6 @@ class MainActivity : BaseActivity<BaseViewModel>() {
             ft.commitAllowingStateLoss()
         }
         initTab(savedInstanceState)
-
-
     }
 
     private fun initTab(savedInstanceState: Bundle?) {

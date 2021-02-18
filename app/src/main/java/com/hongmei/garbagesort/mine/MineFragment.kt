@@ -2,13 +2,20 @@ package com.hongmei.garbagesort.mine
 
 import android.content.Intent
 import android.os.Bundle
-import com.blankj.utilcode.util.ColorUtils.getColor
-import com.gitonway.lee.niftymodaldialogeffects.lib.NiftyDialogBuilder
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.WhichButton
+import com.afollestad.materialdialogs.actions.getActionButton
+import com.afollestad.materialdialogs.color.colorChooser
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseFragment
+import com.hongmei.garbagesort.ext.showMessage
 import com.hongmei.garbagesort.ext.toastNormal
 import com.hongmei.garbagesort.login.LoginActivity
+import com.hongmei.garbagesort.util.CacheDataManager
 import com.hongmei.garbagesort.util.CacheUtil
+import com.hongmei.garbagesort.util.ColorUtil
+import com.hongmei.garbagesort.util.SettingUtil
+import com.hongmei.garbagesort.widget.shape.ShapeConstraintLayout
 import kotlinx.android.synthetic.main.mine_fragment.*
 
 /**
@@ -20,12 +27,21 @@ class MineFragment : BaseFragment<MineViewModel>() {
         return R.layout.mine_fragment
     }
 
+    private var mineHeaderLayout: ShapeConstraintLayout? = null
+
     override fun initView(savedInstanceState: Bundle?) {
         mineNickNameText.text = appViewModel.userinfo.value?.nickname ?: "-"
         mineHeader.setOnClickListener {
             toastNormal("暂不支持修改个人资料")
         }
+        mineHeaderLayout = mineHeader
+        appViewModel.appColor.value?.let {
+            mineHeader.modifyAttribute(fillColor = it)
+        }
         mineZoomView.initView(mineHeader, bgView, mineEntranceLayout)
+        context?.let {
+            mineCacheText.text = CacheDataManager.getTotalCacheSize(it)
+        }
         initClickListeners()
     }
 
@@ -40,27 +56,51 @@ class MineFragment : BaseFragment<MineViewModel>() {
 
         }
         mineSettingLayout.setOnClickListener {
-
+            activity?.let { activity ->
+                MaterialDialog(activity).show {
+                    title(R.string.choose_theme_color)
+                    colorChooser(
+                        ColorUtil.ACCENT_COLORS,
+                        initialSelection = SettingUtil.getColor(activity),
+                        subColors = ColorUtil.PRIMARY_COLORS_SUB
+                    ) { _, color ->
+                        ///修改颜色
+                        SettingUtil.setColor(activity, color)
+                        mineHeaderLayout?.modifyAttribute(fillColor = color)
+                        //通知其他界面立马修改配置
+                        appViewModel.appColor.value = color
+                    }
+                    getActionButton(WhichButton.POSITIVE).updateTextColor(
+                        SettingUtil.getColor(activity)
+                    )
+                    getActionButton(WhichButton.NEGATIVE).updateTextColor(
+                        SettingUtil.getColor(activity)
+                    )
+                    positiveButton(R.string.done)
+                    negativeButton(R.string.cancel)
+                }
+            }
+        }
+        mineClearCacheLayout.setOnClickListener {
+            showMessage(
+                "确定清除缓存么？",
+                positiveButtonText = "确定",
+                negativeButtonText = "取消",
+                positiveAction = {
+                    CacheDataManager.clearAllCache(activity)
+                })
         }
         mineLogoutLayout.setOnClickListener {
-            val dialogBuilder = NiftyDialogBuilder.getInstance(context)
-            dialogBuilder
-                .withMessage("你确定要退出登录么?")
-                .withTitle(null)
-                .withButton1Text("确定")
-                .withButton2Text("取消")
-                .withDialogColor(getColor(R.color.blue))
-                .isCancelableOnTouchOutside(false)
-                .setButton1Click {
+            showMessage(
+                "确定退出登录吗",
+                positiveButtonText = "退出",
+                negativeButtonText = "取消",
+                positiveAction = {
+                    CacheUtil.setUser(null)
                     appViewModel.userinfo.value = null
-                    CacheUtil.setUser(appViewModel.userinfo.value)
                     startActivity(Intent(activity, LoginActivity::class.java))
                     activity?.finish()
-                }
-                .setButton2Click {
-                    dialogBuilder.dismiss()
-                }
-                .show()
+                })
         }
     }
 
