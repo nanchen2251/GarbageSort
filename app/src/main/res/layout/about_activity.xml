@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".mine.about.AboutActivity">
+
+    <include layout="@layout/include_toolbar" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="48dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="垃圾分类宝"
+        android:textColor="@color/black"
+        android:textSize="35sp" />
+
+    <TextView
+        android:id="@+id/version_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:text="v1.0.1"
+        android:textColor="@color/n900"
+        android:textSize="14sp" />
+
+    <RelativeLayout
+        android:id="@+id/aboutCheckVersionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="52dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/check_update_text"
+            android:textColor="@color/n900"
+            android:textSize="@dimen/standard_text_size_16" />
+
+        <TextView
+            android:id="@+id/version_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:drawableEnd="@drawable/ic_right_small"
+            android:gravity="center_vertical"
+            android:textColor="@color/n500"
+            android:textSize="@dimen/sp_14" />
+
+    </RelativeLayout>
+
+    <com.hongmei.garbagesort.widget.SpaceDividerView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/n200"
+        app:spaceColor="@color/white"
+        app:spaceLeft="20dp"
+        app:spaceRight="20dp" />
+
+    <RelativeLayout
+        android:id="@+id/aboutScoreLayout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/score_us_text"
+            android:textColor="@color/n900"
+            android:textSize="@dimen/standard_text_size_16" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/ic_right_small" />
+
+    </RelativeLayout>
+
+    <com.hongmei.garbagesort.widget.SpaceDividerView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_height"
+        android:background="@color/n200"
+        app:spaceColor="@color/white"
+        app:spaceLeft="20dp"
+        app:spaceRight="20dp" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:text="@string/copyright_text"
+        android:textColor="@color/n500"
+        android:textSize="@dimen/small_text_size_10" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:text="@string/code_author"
+        android:textColor="@color/n500"
+        android:textSize="@dimen/small_text_size_10" />
+</LinearLayout>

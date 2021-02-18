@@ -134,4 +134,12 @@
         <attr name="pull_to_zoom_id" format="reference" />
         <attr name="pull_to_zoom_max_scale" format="float" />
     </declare-styleable>
+
+    <declare-styleable name="SpaceDividerView">
+        <attr name="spaceLeft" format="dimension" />
+        <attr name="spaceTop" format="dimension" />
+        <attr name="spaceRight" format="dimension" />
+        <attr name="spaceBottom" format="dimension" />
+        <attr name="spaceColor" format="color" />
+    </declare-styleable>
 </resources>

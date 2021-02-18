@@ -11,6 +11,7 @@ import com.hongmei.garbagesort.base.BaseFragment
 import com.hongmei.garbagesort.ext.showMessage
 import com.hongmei.garbagesort.ext.toastNormal
 import com.hongmei.garbagesort.login.LoginActivity
+import com.hongmei.garbagesort.mine.about.AboutActivity
 import com.hongmei.garbagesort.util.CacheDataManager
 import com.hongmei.garbagesort.util.CacheUtil
 import com.hongmei.garbagesort.util.ColorUtil
@@ -53,7 +54,7 @@ class MineFragment : BaseFragment<MineViewModel>() {
             toastNormal("我的收藏功能暂未开通")
         }
         mineAboutLayout.setOnClickListener {
-
+            startActivity(Intent(activity, AboutActivity::class.java))
         }
         mineSettingLayout.setOnClickListener {
             activity?.let { activity ->

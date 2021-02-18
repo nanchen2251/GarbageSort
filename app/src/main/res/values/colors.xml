@@ -5,7 +5,6 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorTheme">#ffce3d3a</color>
     <color name="blue">#2F98E9</color>
-    <color name="white">#ffffffff</color>
     <color name="main_white">#f2f4f5</color>
     <color name="colorTabTextUnSelected">#D3D3D2</color>
     <color name="colorTabTextSelected">#FDFDFD</color>
@@ -45,8 +44,135 @@
     <color name="accent">#E91E63</color>
     <color name="chinaHoliDay">#e10015</color>
 
-    <color name="green_end">#00edb3</color>
-    <color name="green_end_40">#6600edb3</color>
+
+    <!-- 一、文字颜色 -->
+    <color name="n900">#1f2229</color>
+    <color name="n900_90">#E61F2229</color>
+    <color name="n900_80">#cd1f2229</color>
+    <color name="n900_70">#b31f2229</color>
+    <color name="n900_60">#991f2229</color>
+    <color name="n900_55">#8d1f2229</color>
+    <color name="n900_50">#801f2229</color>
+    <color name="n900_40">#661f2229</color>
+    <color name="n900_32">#511f2229</color>
+    <color name="n900_30">#481f2229</color>
+    <color name="n900_20">#331f2229</color>
+    <color name="n900_10">#191f2229</color>
+    <color name="n900_8">#141F2229</color>
+    <color name="n900_5">#0d1f2229</color>
+    <color name="n800">#333740</color>
+    <color name="n800_8">#14333740</color>
+    <color name="n700">#656a73</color>
+    <color name="n600">#656a73</color>
+    <color name="n600_40">#66656a73</color>
+    <color name="n500">#999da6</color>
+    <color name="n500_30">#4d999da6</color>
+    <color name="n400">#c3c6cb</color>
+    <color name="n400_80">#80c3c6cb</color>
+    <color name="n400_30">#4DC3C6CB</color>
+    <color name="n300">#e4e5e7</color>
+    <color name="n200">#edeef0</color>
+    <color name="n200_80">#cdedeef0</color>
+    <color name="n100">#f3f4f6</color>
+    <color name="n100_80">#cdf3f4f6</color>
+    <color name="n100_70">#b3f3f4f6</color>
+    <color name="n100_60">#99f3f4f6</color>
+    <color name="n100_50">#80f3f4f6</color>
+    <color name="n50">#f8f8fa</color>
+
+    <!-- 二、主要颜色 -->
+    <color name="g700">#00805e</color>
+    <color name="g700_10">#1900805e</color>
+    <color name="g600">#02a675</color>
+    <color name="g500">#0ccc8c</color>
+    <color name="g500_80">#cc0ccc8c</color>
+    <color name="g500_40">#660CCC8C</color>
+    <color name="g500_30">#4c0ccc8c</color>
+    <color name="g500_20">#330ccc8c</color>
+    <color name="g500_15">#260ccc8c</color>
+    <color name="g500_10">#130ccc8c</color>
+    <color name="g500_5">#0d0ccc8c</color>
+
+    <color name="w900">#004266</color>
+    <color name="w800">#006094</color>
+    <color name="w700">#007cbf</color>
+    <color name="w600">#0096e0</color>
+    <color name="w500">#00aaff</color>
+    <color name="w400">#33B4FF</color>
+    <color name="w300">#70C6FF</color>
+    <color name="w200">#99D3FF</color>
+    <color name="w100">#BDE0FF</color>
+    <color name="w50">#E0F0FF</color>
+
+    <color name="y900">#662900</color>
+    <color name="y800">#8C3D00</color>
+    <color name="y700">#B25504</color>
+    <color name="y600">#d9740f</color>
+    <color name="y500">#ff961e</color>
+    <color name="y400">#FFAE45</color>
+    <color name="y300">#FFC46B</color>
+    <color name="y200">#FFD791</color>
+    <color name="y100">#FFE7B8</color>
+    <color name="y50">#FFF5DE</color>
+
+    <color name="o900">#611700</color>
+    <color name="o800">#872603</color>
+    <color name="o700">#d45719</color>
+    <color name="o600">#d45719</color>
+    <color name="o500">#fa772a</color>
+    <color name="o400">#FF9752</color>
+    <color name="o300">#FFB278</color>
+    <color name="o200">#FFCB9E</color>
+    <color name="o200_20">#33FFCB9E</color>
+    <color name="o100">#FFE2C4</color>
+    <color name="o50">#FFF6EB</color>
+
+    <color name="r900">#661212</color>
+    <color name="r800">#8C2020</color>
+    <color name="r700">#B23232</color>
+    <color name="r600">#D94848</color>
+    <color name="r500">#ff6262</color>
+    <color name="r500_80">#ccff6262</color>
+    <color name="r500_20">#33ff6262</color>
+    <color name="r400">#FF8B87</color>
+    <color name="r300">#FFAEA8</color>
+    <color name="r200">#FFD1CC</color>
+    <color name="r100">#FFE9E5</color>
+    <color name="r50">#FFF7F7</color>
+
+    <color name="p600">#8a49bf</color>
+    <color name="p500">#af63e6</color>
+
+    <color name="b600">#3363d4</color>
+    <color name="b500">#4984fa</color>
+
+    <color name="h500">#fee5c9</color>
+    <color name="h800">#794e34</color>
+
+    <color name="white">#ffffff</color>
+    <color name="white_70">#B3FFFFFF</color>
+    <color name="white_50">#80FFFFFF</color>
+    <color name="white_30">#4DFFFFFF</color>
+    <color name="white_20">#33FFFFFF</color>
+    <color name="white_10">#1AFFFFFF</color>
+    <color name="white_8">#4DFFFFFF</color>
+    <color name="white_6">#0FFFFFFF</color>
+
+    <!-- 三、渐变色 -->
     <color name="green_start">#00c67b</color>
+    <color name="green_end">#00edb3</color>
     <color name="green_start_40">#6600c67b</color>
+    <color name="green_end_40">#6600edb3</color>
+    <color name="dark_blue_start">#0084ff</color>
+    <color name="dark_blue_end">#22b6fb</color>
+    <color name="blue_start">#43afff</color>
+    <color name="blue_end">#4ecff9</color>
+    <color name="orange_start">#ffa919</color>
+    <color name="orange_end">#ff961e</color>
+    <color name="tangerine_start">#ff5a2c</color>
+    <color name="tangerine_end">#ffa332</color>
+    <color name="gradient_yellow_start">#FFB605</color>
+    <color name="gradient_yellow_end">#FFDD00</color>
+    <color name="gold_start">#f5cda2</color>
+    <color name="gold_end">#ffe8cf</color>
 </resources>

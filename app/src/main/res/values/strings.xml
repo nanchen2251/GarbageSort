@@ -7,4 +7,8 @@
     <string name="confirm">确定</string>
     <string name="cancel">取消</string>
     <string name="done">完成</string>
+    <string name="check_update_text">版本更新</string>
+    <string name="score_us_text">给软件评分</string>
+    <string name="copyright_text">垃圾分类宝版权所有</string>
+    <string name="code_author">作者：李红梅</string>
 </resources>
