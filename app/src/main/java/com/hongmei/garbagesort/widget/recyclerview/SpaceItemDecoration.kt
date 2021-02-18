@@ -1,4 +1,4 @@
-package com.hongmei.garbagesort.weight.recyclerview
+package com.hongmei.garbagesort.widget.recyclerview
 
 import android.annotation.SuppressLint
 import android.graphics.Canvas

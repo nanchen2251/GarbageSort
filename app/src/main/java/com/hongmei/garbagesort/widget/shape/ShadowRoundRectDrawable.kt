@@ -1,4 +1,4 @@
-package com.hongmei.garbagesort.weight.shape
+package com.hongmei.garbagesort.widget.shape
 
 import android.graphics.Color
 import android.graphics.drawable.LayerDrawable

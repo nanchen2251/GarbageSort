@@ -1,4 +1,4 @@
-package com.hongmei.garbagesort.weight.loadCallBack
+package com.hongmei.garbagesort.widget.loadCallBack
 
 
 import com.hongmei.garbagesort.R

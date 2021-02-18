@@ -13,7 +13,7 @@ import android.widget.ProgressBar
 import androidx.core.content.ContextCompat
 import com.blankj.utilcode.util.Utils
 import com.hongmei.garbagesort.R
-import com.hongmei.garbagesort.weight.loadCallBack.LoadingCallback
+import com.hongmei.garbagesort.widget.loadCallBack.LoadingCallback
 import com.kingja.loadsir.core.LoadService
 import com.tencent.mmkv.MMKV
 import java.lang.reflect.InvocationTargetException

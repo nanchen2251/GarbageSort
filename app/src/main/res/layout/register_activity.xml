@@ -130,7 +130,7 @@
                     android:checked="false" />
             </LinearLayout>
 
-            <com.hongmei.garbagesort.weight.shape.ShapeButton
+            <com.hongmei.garbagesort.widget.shape.ShapeButton
                 android:id="@+id/registerSub"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"

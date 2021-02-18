@@ -1,4 +1,4 @@
-package com.hongmei.garbagesort.weight.viewpager
+package com.hongmei.garbagesort.widget.viewpager
 
 import android.content.Context
 

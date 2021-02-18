@@ -1,4 +1,4 @@
-package com.hongmei.garbagesort.weight.shape
+package com.hongmei.garbagesort.widget.shape
 
 import android.content.Context
 import android.graphics.Color
@@ -11,10 +11,10 @@ import android.view.View
 import androidx.annotation.ColorInt
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.hongmei.garbagesort.R
-import com.hongmei.garbagesort.weight.shape.ShapeConst.BOTTOM_LEFT
-import com.hongmei.garbagesort.weight.shape.ShapeConst.BOTTOM_RIGHT
-import com.hongmei.garbagesort.weight.shape.ShapeConst.TOP_LEFT
-import com.hongmei.garbagesort.weight.shape.ShapeConst.TOP_RIGHT
+import com.hongmei.garbagesort.widget.shape.ShapeConst.BOTTOM_LEFT
+import com.hongmei.garbagesort.widget.shape.ShapeConst.BOTTOM_RIGHT
+import com.hongmei.garbagesort.widget.shape.ShapeConst.TOP_LEFT
+import com.hongmei.garbagesort.widget.shape.ShapeConst.TOP_RIGHT
 
 /**
  * 自定义圆角的 ConstraintLayout - 支持阴影

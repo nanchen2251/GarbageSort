@@ -1,4 +1,4 @@
-package com.hongmei.garbagesort.weight.shape
+package com.hongmei.garbagesort.widget.shape
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -21,10 +21,10 @@ import androidx.annotation.ColorInt
 import androidx.appcompat.widget.AppCompatButton
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.ext.toPx
-import com.hongmei.garbagesort.weight.shape.ShapeConst.BOTTOM_LEFT
-import com.hongmei.garbagesort.weight.shape.ShapeConst.BOTTOM_RIGHT
-import com.hongmei.garbagesort.weight.shape.ShapeConst.TOP_LEFT
-import com.hongmei.garbagesort.weight.shape.ShapeConst.TOP_RIGHT
+import com.hongmei.garbagesort.widget.shape.ShapeConst.BOTTOM_LEFT
+import com.hongmei.garbagesort.widget.shape.ShapeConst.BOTTOM_RIGHT
+import com.hongmei.garbagesort.widget.shape.ShapeConst.TOP_LEFT
+import com.hongmei.garbagesort.widget.shape.ShapeConst.TOP_RIGHT
 
 /**
  * 圆角 button，不设置点击事件同 TextView

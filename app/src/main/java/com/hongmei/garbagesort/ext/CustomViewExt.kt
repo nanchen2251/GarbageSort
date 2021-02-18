@@ -27,11 +27,11 @@ import com.hongmei.garbagesort.map.MapFragment
 import com.hongmei.garbagesort.mine.MineFragment
 import com.hongmei.garbagesort.network.ListDataUiState
 import com.hongmei.garbagesort.util.SettingUtil
-import com.hongmei.garbagesort.weight.loadCallBack.EmptyCallback
-import com.hongmei.garbagesort.weight.loadCallBack.ErrorCallback
-import com.hongmei.garbagesort.weight.loadCallBack.LoadingCallback
-import com.hongmei.garbagesort.weight.recyclerview.DefineLoadMoreView
-import com.hongmei.garbagesort.weight.viewpager.ScaleTransitionPagerTitleView
+import com.hongmei.garbagesort.widget.loadCallBack.EmptyCallback
+import com.hongmei.garbagesort.widget.loadCallBack.ErrorCallback
+import com.hongmei.garbagesort.widget.loadCallBack.LoadingCallback
+import com.hongmei.garbagesort.widget.recyclerview.DefineLoadMoreView
+import com.hongmei.garbagesort.widget.viewpager.ScaleTransitionPagerTitleView
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
@@ -45,13 +45,6 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNav
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator
-
-/**
- * 作者　: hegaojian
- * 时间　: 2020/2/20
- * 描述　:项目中自定义类的拓展函数
- */
-
 
 fun LoadService<*>.setErrorText(message: String) {
     if (message.isNotEmpty()) {
