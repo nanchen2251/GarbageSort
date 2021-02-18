@@ -2,6 +2,7 @@ package com.hongmei.garbagesort.login
 
 import com.hongmei.garbagesort.ext.toastError
 import com.hongmei.garbagesort.ext.toastWarning
+import com.hongmei.garbagesort.util.CacheUtil
 import kotlinx.android.synthetic.main.login_activity.*
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 

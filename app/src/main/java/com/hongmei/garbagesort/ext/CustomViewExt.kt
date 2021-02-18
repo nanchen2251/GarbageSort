@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.graphics.Color
-import android.hardware.Camera
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
@@ -24,7 +23,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.hongmei.garbagesort.R
-import com.hongmei.garbagesort.home.HomeFragment
+import com.hongmei.garbagesort.map.MapFragment
 import com.hongmei.garbagesort.mine.MineFragment
 import com.hongmei.garbagesort.network.ListDataUiState
 import com.hongmei.garbagesort.util.SettingUtil
@@ -328,13 +327,13 @@ fun ViewPager2.initMain(fragment: Fragment): ViewPager2 {
         override fun createFragment(position: Int): Fragment {
             when (position) {
                 0 -> {
-                    return HomeFragment()
+                    return MapFragment()
                 }
                 1 -> {
                     return MineFragment()
                 }
                 else -> {
-                    return HomeFragment()
+                    return MapFragment()
                 }
             }
         }

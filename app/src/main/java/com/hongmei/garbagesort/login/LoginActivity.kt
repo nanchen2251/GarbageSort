@@ -4,15 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
-import android.view.View
 import com.hongmei.garbagesort.MainActivity
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseActivity
+import com.hongmei.garbagesort.bean.UserInfo
 import com.hongmei.garbagesort.ext.hideSoftKeyboard
 import com.hongmei.garbagesort.register.RegisterActivity
+import com.hongmei.garbagesort.util.CacheUtil
 import kotlinx.android.synthetic.main.login_activity.*
-import org.angmarch.views.NiceSpinner
-import org.angmarch.views.OnSpinnerItemSelectedListener
 import java.util.*
 
 
@@ -39,11 +38,12 @@ class LoginActivity : BaseActivity<LoginViewModel>() {
         loginSub.setOnClickListener {
             if (mViewModel.login(usernameText.text.toString(), pwdText.text.toString())) {
                 startActivity(Intent(this, MainActivity::class.java))
-                appViewModel.userinfo.value?.apply {
-                    username = usernameText.text.toString()
-                    nickname = "测试账号" + usernameText.text.toString()
+                appViewModel.userinfo.value = UserInfo(
+                    username = usernameText.text.toString(),
+                    nickname = "测试账号" + usernameText.text.toString(),
                     type = loginSpinner.selectedIndex
-                }
+                )
+                CacheUtil.setUser(appViewModel.userinfo.value)
                 finish()
             }
         }

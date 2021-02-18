@@ -7,8 +7,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="我的页面"
+        android:text="地图页面"
         android:textSize="30sp" />
-
 
 </RelativeLayout>

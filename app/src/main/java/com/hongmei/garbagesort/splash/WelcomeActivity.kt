@@ -51,16 +51,21 @@ class WelcomeActivity : BaseActivity<BaseViewModel>() {
             welcomeImage.visible()
             welcomeJumpText.visible()
             bannerViewPager.postDelayed({
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
-                // 带点渐变动画
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                toSecondPage()
             }, 3000)
             welcomeJumpText.setOnClickListener {
-                toLogin()
+                toSecondPage()
             }
         }
         welcomeJoin.setOnClickListener {
+            toSecondPage()
+        }
+    }
+
+    private fun toSecondPage() {
+        if (CacheUtil.isLogin()) {
+            toMain()
+        } else {
             toLogin()
         }
     }

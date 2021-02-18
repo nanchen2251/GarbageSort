@@ -7,10 +7,13 @@ import android.text.method.PasswordTransformationMethod
 import com.hongmei.garbagesort.MainActivity
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseActivity
+import com.hongmei.garbagesort.bean.UserInfo
 import com.hongmei.garbagesort.ext.initClose
 import com.hongmei.garbagesort.ext.toastWarning
 import com.hongmei.garbagesort.login.LoginViewModel
+import com.hongmei.garbagesort.util.CacheUtil
 import kotlinx.android.synthetic.main.include_toolbar.*
+import kotlinx.android.synthetic.main.login_activity.*
 import kotlinx.android.synthetic.main.register_activity.*
 import java.util.*
 
@@ -55,11 +58,12 @@ class RegisterActivity : BaseActivity<LoginViewModel>() {
                 toastWarning("两次输入的密码不一致")
                 return@setOnClickListener
             }
-            appViewModel.userinfo.value?.apply {
-                username = registerUsername.text.toString()
-                nickname = "测试账号" + registerUsername.text.toString()
-                type = registerSpinner.selectedIndex
-            }
+            appViewModel.userinfo.value = UserInfo(
+                username = usernameText.text.toString(),
+                nickname = "测试账号" + usernameText.text.toString(),
+                type = loginSpinner.selectedIndex
+            )
+            CacheUtil.setUser(appViewModel.userinfo.value)
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
