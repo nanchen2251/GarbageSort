@@ -9,12 +9,12 @@ import android.view.View
 import cn.bingoogolapple.photopicker.activity.BGAPhotoPickerActivity
 import cn.bingoogolapple.photopicker.activity.BGAPhotoPickerPreviewActivity
 import cn.bingoogolapple.photopicker.widget.BGASortableNinePhotoLayout
+import com.hongmei.garbagesort.GlobalData
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseActivity
 import com.hongmei.garbagesort.declare.DeclareInfo
 import com.hongmei.garbagesort.ext.initClose
 import com.hongmei.garbagesort.ext.toastNormal
-import com.hongmei.garbagesort.util.GsonFactory
 import com.tbruyelle.rxpermissions3.RxPermissions
 import kotlinx.android.synthetic.main.declare_info_activity.*
 import kotlinx.android.synthetic.main.include_toolbar.*
@@ -51,8 +51,7 @@ class DeclareInfoActivity : BaseActivity<DeclareInfoViewModel>(), BGASortableNin
                 toastNormal("必须输入申报内容！")
                 return@setOnClickListener
             }
-            val declareInfo = DeclareInfo(content, declareInfoPhotoLayout.data)
-            val jsonString = GsonFactory.toJson(declareInfo)
+            val declareInfo = DeclareInfo(content, GlobalData.currentLocation?.address ?: "暂无位置信息", declareInfoPhotoLayout.data, false)
             val intent = Intent()
             intent.putExtra(EXTRA_MOMENT, declareInfo)
             setResult(Activity.RESULT_OK, intent)

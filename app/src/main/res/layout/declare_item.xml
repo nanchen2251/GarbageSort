@@ -23,6 +23,7 @@
         android:textColor="#707EA3"
         android:textSize="14sp" />
 
+
     <TextView
         android:id="@+id/declare_content"
         style="@style/MatchWrap"
@@ -48,4 +49,28 @@
         app:bga_npl_otherWhiteSpacing="64dp"
         app:bga_npl_placeholderDrawable="@mipmap/bga_pp_ic_holder_light"
         app:bga_npl_showAsLargeWhenOnlyOne="true" />
+
+    <TextView
+        android:id="@+id/declare_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/declare_photos"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="15dp"
+        android:layout_toEndOf="@id/declare_avatar"
+        android:drawablePadding="2dp"
+        android:gravity="center_vertical"
+        android:textColor="@color/blue"
+        app:drawableStartCompat="@drawable/ic_address"
+        tools:text="测试地址" />
+
+    <ImageView
+        android:id="@+id/declare_image_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="36dp"
+        android:src="@drawable/img_done" />
 </RelativeLayout>

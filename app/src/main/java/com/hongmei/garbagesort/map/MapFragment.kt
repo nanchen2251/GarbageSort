@@ -14,6 +14,7 @@ import com.amap.api.navi.AmapNaviPage
 import com.amap.api.navi.AmapNaviParams
 import com.amap.api.navi.AmapNaviType
 import com.amap.api.navi.AmapPageType
+import com.hongmei.garbagesort.GlobalData
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseFragment
 import com.hongmei.garbagesort.ext.appContext
@@ -28,8 +29,6 @@ import kotlin.random.Random
  * Desc: 地图页面
  */
 class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarkerClickListener, AMap.OnInfoWindowClickListener {
-    private var currentLocation: AMapLocation? = null
-
     // 测试数据 蓝垃圾桶位置
     private val blueMarkerList = ArrayList<MarkerOptions>()
 
@@ -122,7 +121,7 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
             return
         }
         // 定位成功，获取信息
-        currentLocation = aMapLocation
+        GlobalData.currentLocation = aMapLocation
         // 切换到定位中心点
         val center = LatLng(aMapLocation.latitude, aMapLocation.longitude)
         val newCameraPosition = CameraUpdateFactory.newCameraPosition(CameraPosition(center, 16F, 30F, 0F))
