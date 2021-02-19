@@ -39,6 +39,10 @@ class SearchGarbageFragment : BaseFragment<SearchGarbageViewModel>(), Toolbar.On
         toolbar.setOnMenuItemClickListener(this)
         searchFragment.setOnSearchClickListener(this)
         setHasOptionsMenu(true)
+        appViewModel.appColor.observeForever {
+            toolbar.setBackgroundColor(it)
+            searchTab?.setBackgroundColor(it)
+        }
 
         // 加载下方的垃圾分类知识
         activity?.run {
@@ -110,7 +114,7 @@ class SearchGarbageFragment : BaseFragment<SearchGarbageViewModel>(), Toolbar.On
         return when (type) {
             0 -> "可回收物"
             1 -> "有害垃圾"
-            2 -> "易腐垃圾"
+            2 -> "厨余垃圾"
             3 -> "其他(干)垃圾"
             else -> "未知类型的垃圾"
         }

@@ -112,4 +112,6 @@ dependencies {
     implementation 'com.wenwenwen888:searchbox:1.0.1'
     // 网络请求
     implementation 'com.amitshekhar.android:android-networking:1.0.2'
+    implementation 'com.lcodecorex:tkrefreshlayout:1.0.7'
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 }

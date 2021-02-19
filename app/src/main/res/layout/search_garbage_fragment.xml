@@ -9,7 +9,6 @@
 
     <com.kekstudio.dachshundtablayout.DachshundTabLayout
         android:id="@+id/searchTab"
-        android:background="@color/green_start"
         style="@style/MyCustomTabLayout"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"

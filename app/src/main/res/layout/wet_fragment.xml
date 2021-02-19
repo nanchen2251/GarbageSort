@@ -29,7 +29,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="易腐垃圾（餐厨垃圾），也可称湿垃圾，一般是指餐饮经营者、单位食堂等生产过程中产生的餐厨废弃物，以及家庭生活中产生的易腐性垃圾"
+                    android:text="厨余垃圾），也可称湿垃圾，一般是指餐饮经营者、单位食堂等生产过程中产生的餐厨废弃物，以及家庭生活中产生的易腐性垃圾"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -37,7 +37,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="易腐垃圾主要包括：剩菜剩饭、菜梗菜叶、肉食内脏、果壳瓜皮等等"
+                    android:text="厨余垃圾主要包括：剩菜剩饭、菜梗菜叶、肉食内脏、果壳瓜皮等等"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 

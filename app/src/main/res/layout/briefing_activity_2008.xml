@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".info.BriefingActivity2008">
+
+    <include layout="@layout/include_toolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="昆明市城市生活垃圾分类工作第三方考核评估简报"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="2020年08月"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        受昆明市城市管理局委托，依据《昆明市城市生活垃圾分类工作第三方考核实施办法（试行）》，以及创建全国文明城市的需求，第三方考核评估机构于2020年08月13日至08月30日对五华区、盘龙区、官渡区、西山区、呈贡区、高新区、经开区、度假区、晋宁区、东川区、安宁市、富民县、禄劝县、宜良县、寻甸县、嵩明县、石林县、空港区、阳宗海共19个区（县）的生活垃圾分类工作进行了考核评估。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="一、总体情况"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        本次考核评估结果显示：昆明市城市生活垃圾分类工作尚处于摸索起步阶段，部分区（县）试点区域已经取得初步成效，每月考核情况都有略微进步，但是总体来说，系统的垃圾分类组织管理、分类投放、分类收集、分类运输和分类处理的全局性工作做的还不够扎实，一定程度上还存在等待和观望的情况，离垃圾分类需求还相差很远。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        本期昆明市主城八区的垃圾分类考核评估平均得分只有58.38分，较上月有所进步，但整体表现较差。五华区、官渡区、呈贡区表现相对较好，其中五华区得67分，排名第一。官渡区得61分，排名第二。做的最差的是西山区，仅得53分，排名末位。按得分由高到低的主城八区排序为：五华区、官渡区、盘龙区、呈贡区、经开区、高新区、度假区、西山区。主城八区得分及排名见图1。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img200801" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="图1 昆明市主城八区城市生活垃圾分类考核评估得分"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        本期昆明市主城八区的垃圾分类考核评估平均得分只有58.38分，较上月有所进步，但整体表现较差。五华区、官渡区、呈贡区表现相对较好，其中五华区得67分，排名第一。官渡区得61分，排名第二。做的最差的是西山区，仅得53分，排名末位。按得分由高到低的主城八区排序为：五华区、官渡区、盘龙区、呈贡区、经开区、高新区、度假区、西山区。主城八区得分及排名见图1。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img200802" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        现将考核评估结果按照组织管理、投放、收集、运输、处理环节分述如下："
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="二、组织管理"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        抽查考核评估结果表明，各区（县）城市生活垃圾分类组织管理建设不完备，大多数区（县）还无生活垃圾分类督导员和志愿者队伍。无宣传培训工作专人专岗，宣传培训工作也不到位，市民精准知晓率低。无生活垃圾分类督导员或督导员数量不充足。未建立垃圾分类奖励榜、公示榜等激励督促制度。未建立垃圾分类基础台账或基础台账内容不全。对照考核评估指标和工作需求均存在很多漏洞。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        其中，主城八区中高新区建设较差，得36分，表明组织管理工作处于刚起步阶段；呈贡区表现较好，得73分，表明考核区域组织管理工作开展一般；总体来说各区组织管理工作还未得到全面开展。主城八区城市生活垃圾分类组织管理项的排名由高到低依次为：呈贡区、官渡区、盘龙区、西山区、五华区、度假区、经开区、高新区。具体得分及排名见图3。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img200803" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        其他区（县）中空港区得分最低，仅得10分；表明考核区域组织管理刚刚启动；石林县和晋宁区表现较好，分别得82分和74分，表明考核区域组织管理工作开展较好。其他区（县）城市生活垃圾分类组织管理项的排名由高到低依次为：石林县、晋宁区、富民县、阳宗海、安宁市、禄劝县、东川区、嵩明县、宜良县、寻甸县、空港区。具体得分及排名见图4。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img200804" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="三、投放"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        抽查考核评估结果表明，各区县垃圾桶投放点均欠专业规范，主要表现为小区等地无投放点公示栏，投放点基本无投放指示牌、有害垃圾暂存点也无危险废物警示标识，市民知晓率和投放准确率低，总体满足不了分类投放的要求。本次评估考虑本市垃圾分类工作仍处于起步阶段的性质，对凡是投放有具分类意识的垃圾桶或果皮箱均适当给了分值。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        从具体评估得分来看，主城八区中呈贡区得分最低，得31分；得分最高的是五华区，得68分。主城八区城市生活垃圾分类投放项的排名由高到低依次为：五华区、高新区、盘龙区、经开区、官渡区、度假区、西山区、呈贡区。具体得分及排名见图5"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img200805" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        其他区（县）中富民县和晋宁区得分最低，均得19分；得分最高的是东川区，得35分。其他区（县）城市生活垃圾分类投放项的排名由高到低依次为：东川区、嵩明县、阳宗海、宜良县、安宁市、禄劝县、寻甸县、石林县、空港区、富民县、晋宁区。具体得分及排名见图6"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img200806" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="四、收集"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        抽查考核评估结果表明，各区（县）城市生活垃圾收集方面表现较好，主要表现在各区（县）均具有垃圾分类收集意识，收集设施标识清晰，摆放整齐，完好度较好。但分类收集准确率差，满足不了分类运输和处理的要求。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        本项评估主城八区中得分最低的是西山区，得73分；最高的是五华区，得88分。主城八区城市生活垃圾分类收集项的排名由高到低依次为：五华区、经开区、高新区、官渡区、盘龙区、度假区、呈贡区、西山区。具体得分及排名见图7。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img200807" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        其他区（县）中得分最低的是禄劝县，得50分；最高的是安宁市，得74分。其他区（县）城市生活垃圾分类收集项的排名由高到低依次为：安宁市、石林县、晋宁区、嵩明县、寻甸县、空港区、阳宗海、东川区、富民县、宜良县、禄劝县。具体得分及排名见图8。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img200808" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="五、运输"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        对于运输项的考核工作主要是对垃圾运输车辆的考核，考核评估结果表明，各区（县）城市生活垃圾运输方面的工作做的较好，基本能做到日产日清和密闭运输，但分类运输还有待加强。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        本次评估主城八区得分最低的是呈贡区，得44分。 主城八区城市生活垃圾分类运输项的排名由高到低依次为：度假区、盘龙区、五华区、官渡区、西山区、经开区、高新区、呈贡区。具体得分及排名见图9。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="        其他区（县）中得分最低的是嵩明县和阳宗海，均得44分。其他区（县）城市生活垃圾分类运输项的排名由高到低依次为：东川区、安宁市、宜良县、晋宁区、寻甸县、石林县、富民县、禄劝县、空港区、嵩明县、阳宗海。具体得分及排名见图10。"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img200809" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img200810" />
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
