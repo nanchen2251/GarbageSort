@@ -72,7 +72,7 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
     override fun initView(savedInstanceState: Bundle?) {
         mapView.onCreate(savedInstanceState)
         locationClient.setLocationOption(locationOption)
-        val typeList = listOf("展示所有垃圾桶", "仅展示可回收垃圾桶", "仅展示湿垃圾桶", "仅展示有害垃圾桶", "仅展示干垃圾桶")
+        val typeList = listOf("展示所有垃圾桶", "仅展示可回收垃圾桶", "仅展示有害垃圾桶", "仅展示易腐垃圾桶","仅展示其他(干)垃圾桶")
         mapSpinner.attachDataSource(typeList)
         mapSpinner.onSpinnerItemSelectedListener = OnSpinnerItemSelectedListener { _, _, position, _ ->
             addMarkers(position)
@@ -86,8 +86,8 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
         when (position) {
             0 -> mapView.map.addMarkers(allMarkerList, false)
             1 -> mapView.map.addMarkers(blueMarkerList, false)
-            2 -> mapView.map.addMarkers(greenMarkerList, false)
-            3 -> mapView.map.addMarkers(redMarkerList, false)
+            2 -> mapView.map.addMarkers(redMarkerList, false)
+            3 -> mapView.map.addMarkers(greenMarkerList, false)
             4 -> mapView.map.addMarkers(greyMarkerList, false)
         }
     }

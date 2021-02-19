@@ -11,12 +11,14 @@ import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.ParsedRequestListener
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseFragment
+import com.hongmei.garbagesort.base.CommonViewPagerAdapter
 import com.hongmei.garbagesort.ext.init
 import com.hongmei.garbagesort.ext.showMessage
 import com.hongmei.garbagesort.ext.toastError
 import com.wyt.searchbox.SearchFragment
 import com.wyt.searchbox.custom.IOnSearchClickListener
 import kotlinx.android.synthetic.main.include_toolbar.*
+import kotlinx.android.synthetic.main.search_garbage_fragment.*
 
 
 /**
@@ -25,6 +27,7 @@ import kotlinx.android.synthetic.main.include_toolbar.*
  */
 class SearchGarbageFragment : BaseFragment<SearchGarbageViewModel>(), Toolbar.OnMenuItemClickListener, IOnSearchClickListener {
     private val searchFragment by lazy { SearchFragment.newInstance() }
+    private val titles by lazy { arrayOf("可回收物", "有害垃圾", "湿垃圾", "干垃圾") }
 
     override fun layoutId(): Int {
         return R.layout.search_garbage_fragment
@@ -36,6 +39,18 @@ class SearchGarbageFragment : BaseFragment<SearchGarbageViewModel>(), Toolbar.On
         toolbar.setOnMenuItemClickListener(this)
         searchFragment.setOnSearchClickListener(this)
         setHasOptionsMenu(true)
+
+        // 加载下方的垃圾分类知识
+        activity?.run {
+            val infoPagerAdapter = CommonViewPagerAdapter(supportFragmentManager, titles)
+            infoPagerAdapter.addFragment(RecyclableFragment())
+            infoPagerAdapter.addFragment(HarmfulFragment())
+            infoPagerAdapter.addFragment(WetFragment())
+            infoPagerAdapter.addFragment(DryFragment())
+            searchViewPager.adapter = infoPagerAdapter
+            searchTab.setupWithViewPager(searchViewPager)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -93,10 +108,10 @@ class SearchGarbageFragment : BaseFragment<SearchGarbageViewModel>(), Toolbar.On
 
     private fun getGarbageType(type: Int): String {
         return when (type) {
-            0 -> "可回收垃圾"
+            0 -> "可回收物"
             1 -> "有害垃圾"
-            2 -> "湿垃圾"
-            3 -> "干垃圾"
+            2 -> "易腐垃圾"
+            3 -> "其他(干)垃圾"
             else -> "未知类型的垃圾"
         }
     }
