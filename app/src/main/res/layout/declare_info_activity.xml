@@ -9,4 +9,67 @@
 
     <include layout="@layout/include_toolbar" />
 
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/MatchWrap.Horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/declareInfoSelectPhoto"
+                    style="@style/AutoWrapTv"
+                    android:text="选择图片" />
+
+                <TextView
+                    android:id="@+id/declareInfoPublishBtn"
+                    style="@style/AutoWrapTv"
+                    android:text="发布" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/declareInfoEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@android:color/transparent"
+                android:gravity="start"
+                android:hint="输入想要申报的内容"
+                android:lines="4"
+                android:textColor="#474747"
+                android:textColorHint="#C6C6C6" />
+
+            <cn.bingoogolapple.photopicker.widget.BGASortableNinePhotoLayout
+                android:id="@+id/declareInfoPhotoLayout"
+                style="@style/WrapWrap"
+                android:layout_margin="10dp"
+                app:bga_snpl_deleteDrawable="@mipmap/bga_pp_ic_delete"
+                app:bga_snpl_deleteDrawableOverlapQuarter="false"
+                app:bga_snpl_editable="true"
+                app:bga_snpl_itemCornerRadius="0dp"
+                app:bga_snpl_itemSpanCount="3"
+                app:bga_snpl_itemWhiteSpacing="4dp"
+                app:bga_snpl_itemWidth="0dp"
+                app:bga_snpl_maxItemCount="9"
+                app:bga_snpl_otherWhiteSpacing="100dp"
+                app:bga_snpl_placeholderDrawable="@mipmap/bga_pp_ic_holder_light"
+                app:bga_snpl_plusDrawable="@mipmap/bga_pp_ic_plus"
+                app:bga_snpl_plusEnable="true"
+                app:bga_snpl_sortable="true" />
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
 </LinearLayout>

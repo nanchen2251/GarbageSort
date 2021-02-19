@@ -19,7 +19,7 @@
     <color name="colorNavLine">#E0E0E0</color>
     <color name="category_text">#323232</color>
     <color name="category_text2">#b6b4b4</color>
-    <color name="colorActivityBackground" >#FAFAFA</color>
+    <color name="colorActivityBackground">#FAFAFA</color>
     <color name="colorWhite">#ffffffff</color>
     <color name="colorTitle">#666</color>
     <color name="colorTabText">#585858</color>
@@ -175,4 +175,5 @@
     <color name="gradient_yellow_end">#FFDD00</color>
     <color name="gold_start">#f5cda2</color>
     <color name="gold_end">#ffe8cf</color>
+    <color name="bga_pp_eighteen_maskColor">@color/space_transparent</color>
 </resources>

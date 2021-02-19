@@ -1,6 +1,7 @@
 package com.hongmei.garbagesort.declare
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -31,7 +32,7 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
     override fun initView(savedInstanceState: Bundle?) {
         declareFab.setOnClickListener {
             // 点击信息申报页面
-            startActivity(Intent(activity, DeclareInfoActivity::class.java))
+            startActivityForResult(Intent(activity, DeclareInfoActivity::class.java), RC_ADD_MOMENT)
         }
         // 信息展示
         declareRv.layoutManager = LinearLayoutManager(context)
@@ -278,5 +279,20 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
         ninePhotoLayout?.flushItems()
     }
 
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (data == null) {
+            return
+        }
+        if (resultCode == Activity.RESULT_OK && requestCode == RC_ADD_MOMENT) {
+            adapter?.addFirstItem(data.getParcelableExtra(DeclareInfoActivity.EXTRA_MOMENT))
+            declareRv?.smoothScrollToPosition(0)
+        }
+    }
+
+    companion object {
+        private const val RC_ADD_MOMENT = 1
+    }
 
 }
