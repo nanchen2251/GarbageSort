@@ -1,6 +1,5 @@
 package com.hongmei.garbagesort
 
-import android.Manifest
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.hongmei.garbagesort.base.BaseActivity
@@ -9,10 +8,9 @@ import com.hongmei.garbagesort.ext.toastNormal
 import com.hongmei.garbagesort.info.InfoFragment
 import com.hongmei.garbagesort.map.MapFragment
 import com.hongmei.garbagesort.mine.MineFragment
-import com.hongmei.garbagesort.search.SearchFragment
+import com.hongmei.garbagesort.search.SearchGarbageFragment
 import com.luseen.spacenavigation.SpaceItem
 import com.luseen.spacenavigation.SpaceOnClickListener
-import com.tbruyelle.rxpermissions3.RxPermissions
 import kotlinx.android.synthetic.main.main_activity.*
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
@@ -122,7 +120,7 @@ class MainActivity : BaseActivity<BaseViewModel>() {
         return when (destTag) {
             MAP_TAG -> MapFragment()
             DECLARE_TAG -> DeclareFragment()
-            SEARCH_TAG -> SearchFragment()
+            SEARCH_TAG -> SearchGarbageFragment()
             INFO_TAG -> InfoFragment()
             MINE_TAG -> MineFragment()
             else -> Fragment()  // do nothing

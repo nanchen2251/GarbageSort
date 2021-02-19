@@ -113,6 +113,35 @@ fun Fragment.showMessage(
     }
 }
 
+fun Fragment.showListDialog(
+    message: String,
+    title: String = "温馨提示",
+    positiveButtonText: String = "我知道啦",
+    positiveAction: () -> Unit = {},
+    negativeButtonText: String = "",
+    negativeAction: () -> Unit = {}
+) {
+    activity?.let {
+        MaterialDialog(it)
+            .cancelable(true)
+            .lifecycleOwner(viewLifecycleOwner)
+            .show {
+                title(text = title)
+                positiveButton(text = positiveButtonText) {
+                    positiveAction.invoke()
+                }
+                if (negativeButtonText.isNotEmpty()) {
+                    negativeButton(text = negativeButtonText) {
+                        negativeAction.invoke()
+                    }
+                }
+                getActionButton(WhichButton.POSITIVE).updateTextColor(SettingUtil.getColor(it))
+                getActionButton(WhichButton.NEGATIVE).updateTextColor(SettingUtil.getColor(it))
+            }
+    }
+}
+
+
 /**
  * 获取进程号对应的进程名
  *
