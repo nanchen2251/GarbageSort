@@ -11,7 +11,9 @@ import cn.bingoogolapple.photopicker.imageloader.BGARVOnScrollListener
 import cn.bingoogolapple.photopicker.widget.BGANinePhotoLayout
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseFragment
+import com.hongmei.garbagesort.bean.UserType
 import com.hongmei.garbagesort.declare.info.DeclareInfoActivity
+import com.hongmei.garbagesort.ext.visible
 import com.tbruyelle.rxpermissions3.RxPermissions
 import kotlinx.android.synthetic.main.declare_fragment.*
 import java.util.*
@@ -30,13 +32,17 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        // 只有监察用户才可以申报
+        declareFab.visible(appViewModel.userinfo.value?.type == UserType.SUPERVISOR)
         declareFab.setOnClickListener {
             // 点击信息申报页面
             startActivityForResult(Intent(activity, DeclareInfoActivity::class.java), RC_ADD_MOMENT)
         }
         // 信息展示
         declareRv.layoutManager = LinearLayoutManager(context)
-        adapter = DeclareAdapter(declareRv, this)
+        // 只有执行人员可以看到是否已处理的状态
+        val isExecutor = appViewModel.userinfo.value?.type == UserType.EXECUTOR
+        adapter = DeclareAdapter(declareRv, this, isExecutor)
         declareRv.adapter = adapter
         declareRv.addOnScrollListener(BGARVOnScrollListener(activity))
 
