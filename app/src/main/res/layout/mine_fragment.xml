@@ -132,6 +132,37 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/mineMsgLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_score" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="我的消息"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:src="@drawable/ic_right" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/mineFavoriteLayout"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"

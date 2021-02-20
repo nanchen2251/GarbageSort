@@ -8,8 +8,10 @@ import com.afollestad.materialdialogs.actions.getActionButton
 import com.afollestad.materialdialogs.color.colorChooser
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseFragment
+import com.hongmei.garbagesort.bean.UserType
 import com.hongmei.garbagesort.ext.showMessage
 import com.hongmei.garbagesort.ext.toastNormal
+import com.hongmei.garbagesort.ext.visible
 import com.hongmei.garbagesort.login.LoginActivity
 import com.hongmei.garbagesort.mine.about.AboutActivity
 import com.hongmei.garbagesort.util.CacheDataManager
@@ -89,6 +91,7 @@ class MineFragment : BaseFragment<MineViewModel>() {
                 negativeButtonText = "取消",
                 positiveAction = {
                     CacheDataManager.clearAllCache(activity)
+                    mineCacheText.text = ""
                 })
         }
         mineLogoutLayout.setOnClickListener {
@@ -102,6 +105,14 @@ class MineFragment : BaseFragment<MineViewModel>() {
                     startActivity(Intent(activity, LoginActivity::class.java))
                     activity?.finish()
                 })
+        }
+        mineMsgLayout.visible(
+            appViewModel.userinfo.value?.type == UserType.EXECUTOR
+                    || appViewModel.userinfo.value?.type == UserType.GOVERNMENT
+                    || appViewModel.userinfo.value?.type == UserType.SUPERVISOR
+        )
+        mineMsgLayout.setOnClickListener {
+            toastNormal("暂未开通...")
         }
     }
 
