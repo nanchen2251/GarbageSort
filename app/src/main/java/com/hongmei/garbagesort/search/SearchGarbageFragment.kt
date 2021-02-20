@@ -115,7 +115,7 @@ class SearchGarbageFragment : BaseFragment<SearchGarbageViewModel>(), Toolbar.On
             0 -> "可回收物"
             1 -> "有害垃圾"
             2 -> "厨余垃圾"
-            3 -> "其他(干)垃圾"
+            3 -> "其他垃圾"
             else -> "未知类型的垃圾"
         }
     }
