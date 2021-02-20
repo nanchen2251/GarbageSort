@@ -1,8 +1,11 @@
 package com.hongmei.garbagesort
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.fragment.app.Fragment
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.customview.customView
@@ -10,6 +13,7 @@ import com.afollestad.materialdialogs.customview.getCustomView
 import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.hongmei.garbagesort.base.BaseActivity
 import com.hongmei.garbagesort.declare.DeclareFragment
+import com.hongmei.garbagesort.ext.toastError
 import com.hongmei.garbagesort.ext.toastNormal
 import com.hongmei.garbagesort.ext.toastSuccess
 import com.hongmei.garbagesort.info.InfoFragment
@@ -36,8 +40,6 @@ class MainActivity : BaseActivity<BaseViewModel>() {
     private val tabIcons = arrayOf(R.drawable.menu_tab_map, R.drawable.menu_tab_declare, R.drawable.menu_tab_info, R.drawable.menu_tab_me)
     private var supportFragmentTag = arrayOf(MAP_TAG, DECLARE_TAG, SEARCH_TAG, INFO_TAG, MINE_TAG)
     private var lastFragmentTag = ""
-    private var circleProgressBar: AnnulusCustomizeView? = null
-    private var loadingDialog: MaterialDialog? = null
 
     override fun layoutId(): Int {
         return R.layout.main_activity
@@ -171,43 +173,45 @@ class MainActivity : BaseActivity<BaseViewModel>() {
                     builder.append(file).append("\n")
                 }
                 if (!isFinishing) {
-                    loadingDialog = MaterialDialog(this)
+                    val loadingDialog = MaterialDialog(this)
                         .cancelable(false)
                         .cancelOnTouchOutside(false)
                         .cornerRadius(12f)
                         .customView(R.layout.layout_upload_progress_dialog_view)
                         .lifecycleOwner(this)
-                    loadingDialog?.getCustomView()?.run {
-                        circleProgressBar = this.findViewById(R.id.progressBar)
-                        setProgress()
+                    loadingDialog.getCustomView().run {
+                        val circleProgressBar = this.findViewById<AnnulusCustomizeView>(R.id.progressBar)
+                        val animator = ObjectAnimator.ofInt(0, 100)
+                        animator.duration = 3000L
+                        animator.interpolator = AccelerateDecelerateInterpolator()
+                        animator.addUpdateListener {
+                            circleProgressBar.setProgress(it.animatedValue as Int)
+                            invalidate()
+                        }
+                        animator.addListener(object : Animator.AnimatorListener {
+                            override fun onAnimationRepeat(p0: Animator?) {
+                            }
+
+                            override fun onAnimationEnd(p0: Animator?) {
+                                loadingDialog.dismiss()
+                                toastSuccess("上传成功")
+                            }
+
+                            override fun onAnimationCancel(p0: Animator?) {
+                                loadingDialog.dismiss()
+                                toastError("上传失败")
+                            }
+
+                            override fun onAnimationStart(p0: Animator?) {
+                            }
+
+                        })
+                        animator.start()
                     }
-                    loadingDialog?.show()
+                    loadingDialog.show()
                 }
             }
         }
-    }
-
-    private fun setProgress() {
-        if (circleProgressBar == null) {
-            return
-        }
-        object : Thread() {
-            override fun run() {
-                for (i in 1..100) {
-                    circleProgressBar?.setProgress(i)
-                    try {
-                        sleep(100)
-                    } catch (e: InterruptedException) {
-                        e.printStackTrace()
-                    }
-                }
-                runOnUiThread {
-                    toastSuccess("上传成功")
-                    loadingDialog?.dismiss()
-                }
-
-            }
-        }.start()
     }
 
     companion object {
