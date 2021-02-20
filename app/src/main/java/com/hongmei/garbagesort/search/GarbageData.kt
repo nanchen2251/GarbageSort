@@ -11,6 +11,6 @@ data class GarbageData(
         var explain: String = "",
         var name: String = "",
         var tip: String = "",
-        var type: Int = 0       // 0 - 可回收垃圾 1 - 有害垃圾 2 - 湿垃圾 3 - 干垃圾
+        var type: Int = 0       // 0 - 可回收垃圾 1 - 有害垃圾 2 - 厨余垃圾 3 - 其他垃圾
     )
 }

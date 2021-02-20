@@ -27,7 +27,7 @@ import kotlinx.android.synthetic.main.search_garbage_fragment.*
  */
 class SearchGarbageFragment : BaseFragment<SearchGarbageViewModel>(), Toolbar.OnMenuItemClickListener, IOnSearchClickListener {
     private val searchFragment by lazy { SearchFragment.newInstance() }
-    private val titles by lazy { arrayOf("可回收物", "有害垃圾", "湿垃圾", "干垃圾") }
+    private val titles by lazy { arrayOf("可回收物", "有害垃圾", "厨余垃圾", "其他垃圾") }
 
     override fun layoutId(): Int {
         return R.layout.search_garbage_fragment

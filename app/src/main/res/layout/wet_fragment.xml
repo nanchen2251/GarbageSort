@@ -29,7 +29,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="厨余垃圾），也可称湿垃圾，一般是指餐饮经营者、单位食堂等生产过程中产生的餐厨废弃物，以及家庭生活中产生的易腐性垃圾"
+                    android:text="厨余垃圾，也可称湿垃圾，一般是指餐饮经营者、单位食堂等生产过程中产生的餐厨废弃物，以及家庭生活中产生的易腐性垃圾"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
@@ -56,7 +56,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="1. 纯流质的食物垃圾，如牛奶等，应直接倒进下水口\n2. 有包装物的湿垃圾应将包装物去除后分类投放，包装物请投放到对应的可回收物或其他垃圾容器"
+                    android:text="1. 纯流质的食物垃圾，如牛奶等，应直接倒进下水口\n2. 有包装物的厨余垃圾应将包装物去除后分类投放，包装物请投放到对应的可回收物或其他垃圾容器"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
 
