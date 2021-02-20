@@ -6,9 +6,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
 import android.view.View
+import android.widget.TextView
 import cn.bingoogolapple.photopicker.activity.BGAPhotoPickerActivity
 import cn.bingoogolapple.photopicker.activity.BGAPhotoPickerPreviewActivity
 import cn.bingoogolapple.photopicker.widget.BGASortableNinePhotoLayout
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.input.getInputField
+import com.afollestad.materialdialogs.input.input
 import com.hongmei.garbagesort.GlobalData
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseActivity
@@ -25,6 +29,8 @@ import java.util.*
  * 信息申报发布页面
  */
 class DeclareInfoActivity : BaseActivity<DeclareInfoViewModel>(), BGASortableNinePhotoLayout.Delegate {
+
+    private var declareAddressText: TextView? = null
 
     override fun layoutId(): Int {
         return R.layout.declare_info_activity
@@ -51,11 +57,27 @@ class DeclareInfoActivity : BaseActivity<DeclareInfoViewModel>(), BGASortableNin
                 toastNormal("必须输入申报内容！")
                 return@setOnClickListener
             }
-            val declareInfo = DeclareInfo(content, GlobalData.currentLocation?.address ?: "暂无位置信息", declareInfoPhotoLayout.data, false)
+            val declareInfo = DeclareInfo(content, declareAddressText?.text?.toString() ?: "暂无位置信息", declareInfoPhotoLayout.data, false)
             val intent = Intent()
             intent.putExtra(EXTRA_MOMENT, declareInfo)
             setResult(Activity.RESULT_OK, intent)
             finish()
+        }
+        this.declareAddressText = declareAddress
+        declareAddressText?.text = GlobalData.currentLocation?.address ?: "暂无位置信息，点击手动输入"
+
+        declareAddressText?.setOnClickListener {
+            MaterialDialog(this).show {
+                title(text = "请输入有效地址")
+                input()
+                positiveButton(text = "提交", click = {
+                    if (it.getInputField().text.isNotEmpty()) {
+                        declareAddressText?.text = it.getInputField().text
+                    } else {
+                        toastNormal("地址输入不能为空")
+                    }
+                })
+            }
         }
     }
 

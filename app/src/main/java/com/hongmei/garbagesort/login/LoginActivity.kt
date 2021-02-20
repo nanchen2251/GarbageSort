@@ -61,7 +61,7 @@ class LoginActivity : BaseActivity<LoginViewModel>() {
             }
             pwdText.setSelection(pwdText.text.length)
         }
-        val typeList: List<String> = LinkedList(listOf("普通用户", "监察人员", "执行人员", "管理人员", "政府人员"))
+        val typeList: List<String> = LinkedList(listOf("普通用户", "监察人员", "执行人员", "政府人员"))
         loginSpinner.attachDataSource(typeList)
     }
 

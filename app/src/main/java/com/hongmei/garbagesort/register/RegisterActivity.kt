@@ -33,7 +33,7 @@ class RegisterActivity : BaseActivity<LoginViewModel>() {
         toolbar.initClose("注册") {
             finish()
         }
-        val typeList: List<String> = LinkedList(listOf("普通用户", "监察人员", "执行人员", "管理人员", "政府人员"))
+        val typeList: List<String> = LinkedList(listOf("普通用户", "监察人员", "执行人员", "政府人员"))
         registerSpinner.attachDataSource(typeList)
         // 清空账号信息
         registerClear.setOnClickListener {

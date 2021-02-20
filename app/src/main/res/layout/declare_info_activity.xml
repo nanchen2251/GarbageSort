@@ -49,6 +49,21 @@
                 android:textColor="#474747"
                 android:textColorHint="#C6C6C6" />
 
+            <TextView
+                android:id="@+id/declareAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"
+                android:drawablePadding="2dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textColor="@color/blue"
+                app:drawableStartCompat="@drawable/ic_address"
+                tools:text="测试地址" />
+
             <cn.bingoogolapple.photopicker.widget.BGASortableNinePhotoLayout
                 android:id="@+id/declareInfoPhotoLayout"
                 style="@style/WrapWrap"
