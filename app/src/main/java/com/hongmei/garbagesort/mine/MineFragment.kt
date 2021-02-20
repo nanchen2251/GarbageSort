@@ -6,6 +6,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.WhichButton
 import com.afollestad.materialdialogs.actions.getActionButton
 import com.afollestad.materialdialogs.color.colorChooser
+import com.hongmei.garbagesort.GlobalData
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseFragment
 import com.hongmei.garbagesort.bean.UserType
@@ -102,6 +103,7 @@ class MineFragment : BaseFragment<MineViewModel>() {
                 positiveAction = {
                     CacheUtil.setUser(null)
                     appViewModel.userinfo.value = null
+                    GlobalData.currentLocation = null
                     startActivity(Intent(activity, LoginActivity::class.java))
                     activity?.finish()
                 })

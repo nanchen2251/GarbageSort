@@ -1,16 +1,25 @@
 package com.hongmei.garbagesort
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.customview.customView
+import com.afollestad.materialdialogs.customview.getCustomView
+import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.hongmei.garbagesort.base.BaseActivity
 import com.hongmei.garbagesort.declare.DeclareFragment
 import com.hongmei.garbagesort.ext.toastNormal
+import com.hongmei.garbagesort.ext.toastSuccess
 import com.hongmei.garbagesort.info.InfoFragment
 import com.hongmei.garbagesort.map.MapFragment
 import com.hongmei.garbagesort.mine.MineFragment
 import com.hongmei.garbagesort.search.SearchGarbageFragment
+import com.hongmei.garbagesort.widget.AnnulusCustomizeView
 import com.luseen.spacenavigation.SpaceItem
 import com.luseen.spacenavigation.SpaceOnClickListener
+import com.zlylib.fileselectorlib.utils.Const
 import kotlinx.android.synthetic.main.main_activity.*
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
@@ -27,6 +36,8 @@ class MainActivity : BaseActivity<BaseViewModel>() {
     private val tabIcons = arrayOf(R.drawable.menu_tab_map, R.drawable.menu_tab_declare, R.drawable.menu_tab_info, R.drawable.menu_tab_me)
     private var supportFragmentTag = arrayOf(MAP_TAG, DECLARE_TAG, SEARCH_TAG, INFO_TAG, MINE_TAG)
     private var lastFragmentTag = ""
+    private var circleProgressBar: AnnulusCustomizeView? = null
+    private var loadingDialog: MaterialDialog? = null
 
     override fun layoutId(): Int {
         return R.layout.main_activity
@@ -148,6 +159,55 @@ class MainActivity : BaseActivity<BaseViewModel>() {
 
     private fun showBackPressTip() {
         toastNormal("再按一次退出")
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && data != null) {
+            if (requestCode == InfoFragment.REQUEST_CODE) {
+                val essFileList = data.getStringArrayListExtra(Const.EXTRA_RESULT_SELECTION) ?: return
+                val builder = StringBuilder()
+                for (file in essFileList) {
+                    builder.append(file).append("\n")
+                }
+                if (!isFinishing) {
+                    loadingDialog = MaterialDialog(this)
+                        .cancelable(false)
+                        .cancelOnTouchOutside(false)
+                        .cornerRadius(12f)
+                        .customView(R.layout.layout_upload_progress_dialog_view)
+                        .lifecycleOwner(this)
+                    loadingDialog?.getCustomView()?.run {
+                        circleProgressBar = this.findViewById(R.id.progressBar)
+                        setProgress()
+                    }
+                    loadingDialog?.show()
+                }
+            }
+        }
+    }
+
+    private fun setProgress() {
+        if (circleProgressBar == null) {
+            return
+        }
+        object : Thread() {
+            override fun run() {
+                for (i in 1..100) {
+                    circleProgressBar?.setProgress(i)
+                    try {
+                        sleep(100)
+                    } catch (e: InterruptedException) {
+                        e.printStackTrace()
+                    }
+                }
+                runOnUiThread {
+                    toastSuccess("上传成功")
+                    loadingDialog?.dismiss()
+                }
+
+            }
+        }.start()
     }
 
     companion object {

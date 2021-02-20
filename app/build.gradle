@@ -114,5 +114,8 @@ dependencies {
     // 网络请求
     implementation 'com.amitshekhar.android:android-networking:1.0.2'
     implementation 'com.lcodecorex:tkrefreshlayout:1.0.7'
+    // pdf 浏览器
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    // 文件选择器
+    implementation 'com.github.ZLYang110:FileSelector:2.0.0'
 }

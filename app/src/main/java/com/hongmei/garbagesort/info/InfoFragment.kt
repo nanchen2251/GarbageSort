@@ -5,8 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.hongmei.garbagesort.GlideImageLoader
 import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseFragment
+import com.hongmei.garbagesort.bean.UserType
+import com.hongmei.garbagesort.ext.visible
 import com.hongmei.garbagesort.web.WebActivity
+import com.zlylib.fileselectorlib.FileSelector
 import kotlinx.android.synthetic.main.info_fragment.*
+
 
 /**
  * Date: 2021-02-18
@@ -67,6 +71,20 @@ class InfoFragment : BaseFragment<InfoViewModel>() {
         }
         infoRecyclerView.adapter = adapter
         addTestData()
+
+
+        // 政府人员展示上报监管简报的入口
+        infoUploadBtn.visible(appViewModel.userinfo.value?.type == UserType.GOVERNMENT)
+        infoUploadBtn.setOnClickListener {
+            // 点击上报监管简报
+            // 这里懒得适配这个库了，onActivityResult 放在 Activity 中了
+            FileSelector.from(activity)
+                .setMaxCount(5) //设置最大选择数
+                .setFileTypes("png", "doc", "apk", "mp3", "gif", "txt", "mp4", "zip", "pdf") //设置文件类型
+                .setSortType(FileSelector.BY_NAME_ASC) //设置名字排序
+                .requestCode(REQUEST_CODE) //设置返回码
+                .start()
+        }
     }
 
     private fun addTestData() {
@@ -78,6 +96,10 @@ class InfoFragment : BaseFragment<InfoViewModel>() {
         infoList.add(InfoEntity("2020年09月监管简报", "2020年09月", "202009.pdf"))
         infoList.add(InfoEntity("2020年08月监管简报", "2020年08月", "202008.pdf"))
         adapter?.data = infoList
+    }
+
+    companion object {
+        const val REQUEST_CODE = 1
     }
 
 }

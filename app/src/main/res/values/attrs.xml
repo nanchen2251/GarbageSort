@@ -142,4 +142,43 @@
         <attr name="spaceBottom" format="dimension" />
         <attr name="spaceColor" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="CircleTextProgressBar">
+        <attr name="ctp_arcColorBg" format="color" />
+        <attr name="ctp_arcColor" format="color" />
+        <attr name="ctp_arcWidth" format="dimension" />
+        <attr name="ctp_centerTextColor" format="color" />
+        <attr name="ctp_centerTextSize" format="dimension" />
+        <attr name="ctp_centerText" format="string" />
+        <attr name="ctp_circleRadius" format="dimension" />
+        <attr name="ctp_progress" format="integer" />
+        <attr name="ctp_is_fake_bold_text" format="boolean" />
+    </declare-styleable>
+
+
+    <attr name="annulusColor" format="color"/>//圆环颜色
+    <attr name="loadColor" format="color"/>//环形进度条加载颜色
+    <attr name="annulusWidth" format="dimension"/>//圆环宽度
+    <attr name="progress" format="integer"/>//圆环进度
+    <attr name="textColor" format="color"/>//文本颜色
+    <attr name="textSize" format="dimension"/>//文本字体大小
+    <attr name="progressType">//环形进度条类型：0.实心 1.空心
+        <enum name="fill" value="0"/>
+        <enum name="stroke" value="1"/>
+    </attr>
+    <attr name="isShowText">//是否显示文本：0.显示 1.不显示
+        <enum name="yes" value="0"/>
+        <enum name="no" value="1"/>
+    </attr>
+
+    <declare-styleable name="AnnulusCustomizeView">
+        <attr name="annulusColor"/>
+        <attr name="loadColor"/>
+        <attr name="annulusWidth"/>
+        <attr name="progress"/>
+        <attr name="textColor"/>
+        <attr name="textSize"/>
+        <attr name="progressType"/>
+        <attr name="isShowText"/>
+    </declare-styleable>
 </resources>
