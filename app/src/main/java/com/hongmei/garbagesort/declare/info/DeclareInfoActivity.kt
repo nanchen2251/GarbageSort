@@ -57,7 +57,13 @@ class DeclareInfoActivity : BaseActivity<DeclareInfoViewModel>(), BGASortableNin
                 toastNormal("必须输入申报内容！")
                 return@setOnClickListener
             }
-            val declareInfo = DeclareInfo(content, declareAddressText?.text?.toString() ?: "暂无位置信息", declareInfoPhotoLayout.data, false)
+            val declareInfo = DeclareInfo(
+                content,
+                declareAddressText?.text?.toString() ?: "暂无位置信息",
+                declareInfoPhotoLayout.data,
+                false,
+                appViewModel.userinfo.value?.nickname ?: "李红梅"
+            )
             val intent = Intent()
             intent.putExtra(EXTRA_MOMENT, declareInfo)
             setResult(Activity.RESULT_OK, intent)

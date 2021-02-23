@@ -5,7 +5,9 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import cn.bingoogolapple.baseadapter.BGAOnRVItemClickListener
 import cn.bingoogolapple.photopicker.activity.BGAPhotoPreviewActivity
 import cn.bingoogolapple.photopicker.imageloader.BGARVOnScrollListener
 import cn.bingoogolapple.photopicker.widget.BGANinePhotoLayout
@@ -13,6 +15,7 @@ import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseFragment
 import com.hongmei.garbagesort.bean.UserType
 import com.hongmei.garbagesort.declare.info.DeclareInfoActivity
+import com.hongmei.garbagesort.ext.toastNormal
 import com.hongmei.garbagesort.ext.visible
 import com.tbruyelle.rxpermissions3.RxPermissions
 import kotlinx.android.synthetic.main.declare_fragment.*
@@ -26,6 +29,7 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
 
     private var adapter: DeclareAdapter? = null
     private var currentPhotoLayout: BGANinePhotoLayout? = null
+    private var currentClickPosition = -1
 
     override fun layoutId(): Int {
         return R.layout.declare_fragment
@@ -51,6 +55,21 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
             dismissLoading()
         }, 1500)
 
+        if (appViewModel.userinfo.value?.type == UserType.EXECUTOR) {
+            adapter?.setOnRVItemClickListener(object : BGAOnRVItemClickListener {
+                override fun onRVItemClick(parent: ViewGroup?, itemView: View?, position: Int) {
+                    // 只有未处理的才可以点击
+                    val model = adapter?.data?.get(position) ?: return
+                    if (model.done) {
+                        // 已处理的直接提示
+                        toastNormal("本条信息已处理，仅未处理可以点击")
+                    } else {
+                        currentClickPosition = position
+                        DeclareProcessActivity.startActivityForResult(this@DeclareFragment, model, REQUEST_CODE_PROCESS)
+                    }
+                }
+            })
+        }
     }
 
     /**
@@ -311,10 +330,18 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
             adapter?.addFirstItem(data.getParcelableExtra(DeclareInfoActivity.EXTRA_MOMENT))
             declareRv?.smoothScrollToPosition(0)
         }
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_PROCESS) {
+            val infoList = adapter?.data ?: return
+            if (currentClickPosition >= 0 && currentClickPosition < infoList.size) {
+                infoList[currentClickPosition].done = true
+                adapter?.notifyDataSetChanged()
+            }
+        }
     }
 
     companion object {
         private const val RC_ADD_MOMENT = 1
+        private const val REQUEST_CODE_PROCESS = 2
     }
 
 }

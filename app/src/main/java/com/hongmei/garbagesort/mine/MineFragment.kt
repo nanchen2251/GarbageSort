@@ -65,7 +65,7 @@ class MineFragment : BaseFragment<MineViewModel>() {
             }
         }
         // 只有政府人员可以看到申报统计
-        mineHeaderLayout.visible(appViewModel.userinfo.value?.type == UserType.GOVERNMENT)
+        mineStatisticsLayout.visible(appViewModel.userinfo.value?.type == UserType.GOVERNMENT)
         mineFavoriteLayout.setOnClickListener {
             toastNormal("我的收藏功能暂未开通")
         }

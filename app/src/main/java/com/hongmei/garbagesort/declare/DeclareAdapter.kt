@@ -25,6 +25,7 @@ class DeclareAdapter(recyclerView: RecyclerView, private val delegate: BGANinePh
             helper.setVisibility(R.id.declare_content, View.VISIBLE)
             helper.setText(R.id.declare_content, model.content)
         }
+        helper.setText(R.id.declare_username, model.name)
         val ninePhotoLayout = helper.getView<BGANinePhotoLayout>(R.id.declare_photos)
         ninePhotoLayout.setDelegate(delegate)
         ninePhotoLayout.data = model.photos

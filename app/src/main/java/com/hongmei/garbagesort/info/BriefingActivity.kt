@@ -9,6 +9,7 @@ import com.hongmei.garbagesort.base.BaseActivity
 import com.hongmei.garbagesort.ext.initClose
 import kotlinx.android.synthetic.main.briefing_activity.*
 import kotlinx.android.synthetic.main.include_toolbar.*
+import kotlinx.android.synthetic.main.register_activity.*
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 
 class BriefingActivity : BaseActivity<BaseViewModel>() {
@@ -18,6 +19,10 @@ class BriefingActivity : BaseActivity<BaseViewModel>() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        // 设置颜色跟主题颜色一致
+        appViewModel.appColor.value?.let {
+            toolbar.setBackgroundColor(it)
+        }
         val title = intent.getStringExtra(TITLE) ?: "监管报告"
         val pdfName = intent.getStringExtra(PDFNAME) ?: return
         toolbar.initClose(title) {

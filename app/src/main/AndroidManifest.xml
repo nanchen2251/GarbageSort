@@ -28,6 +28,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".declare.DeclareProcessActivity"></activity>
         <activity
             android:name=".info.BriefingActivity"
             android:launchMode="singleTop"
