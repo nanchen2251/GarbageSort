@@ -61,7 +61,7 @@ class MineFragment : BaseFragment<MineViewModel>() {
         mineStatisticsLayout.setOnClickListener {
             // 点击申报统计
             activity?.run {
-                BriefingActivity.start(this, "申报统计", "")
+                BriefingActivity.start(this, "申报统计", "statistics.pdf")
             }
         }
         // 只有政府人员可以看到申报统计
