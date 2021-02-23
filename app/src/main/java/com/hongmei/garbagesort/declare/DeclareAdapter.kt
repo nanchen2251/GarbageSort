@@ -31,7 +31,7 @@ class DeclareAdapter(recyclerView: RecyclerView, private val delegate: BGANinePh
         helper.setText(R.id.declare_address, model.address)
         when (userType) {
             UserType.GENERAL -> {
-                // 普通人员看不到图片
+                // 普通人员看不到待处理和已处理
                 helper.setVisibility(R.id.declare_image_done, View.GONE)
             }
             UserType.EXECUTOR -> {

@@ -13,6 +13,7 @@ import com.hongmei.garbagesort.bean.UserType
 import com.hongmei.garbagesort.ext.showMessage
 import com.hongmei.garbagesort.ext.toastNormal
 import com.hongmei.garbagesort.ext.visible
+import com.hongmei.garbagesort.info.BriefingActivity
 import com.hongmei.garbagesort.login.LoginActivity
 import com.hongmei.garbagesort.mine.about.AboutActivity
 import com.hongmei.garbagesort.util.CacheDataManager
@@ -35,7 +36,7 @@ class MineFragment : BaseFragment<MineViewModel>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         mineNickNameText.text = appViewModel.userinfo.value?.nickname ?: "-"
-        mineTipsText.text = when(appViewModel.userinfo.value?.type){
+        mineTipsText.text = when (appViewModel.userinfo.value?.type) {
             UserType.GOVERNMENT -> "政府人员"
             UserType.EXECUTOR -> "这行人员"
             UserType.GENERAL -> "普通用户"
@@ -57,9 +58,14 @@ class MineFragment : BaseFragment<MineViewModel>() {
     }
 
     private fun initClickListeners() {
-        mineScoreLayout.setOnClickListener {
-            toastNormal("我的积分功能暂未开通...")
+        mineStatisticsLayout.setOnClickListener {
+            // 点击申报统计
+            activity?.run {
+                BriefingActivity.start(this, "申报统计", "")
+            }
         }
+        // 只有政府人员可以看到申报统计
+        mineHeaderLayout.visible(appViewModel.userinfo.value?.type == UserType.GOVERNMENT)
         mineFavoriteLayout.setOnClickListener {
             toastNormal("我的收藏功能暂未开通")
         }

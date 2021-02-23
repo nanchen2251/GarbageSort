@@ -81,9 +81,8 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-
                 <LinearLayout
-                    android:id="@+id/mineScoreLayout"
+                    android:id="@+id/mineStatisticsLayout"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="?attr/selectableItemBackground"
@@ -95,34 +94,16 @@
                     <ImageView
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:layout_marginRight="16dp"
-                        android:src="@drawable/ic_score" />
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/ic_statistics" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="我的积分"
+                        android:text="申报统计"
                         android:textColor="@color/colorBlack333"
                         android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="6dp"
-                        android:text="当前积分:"
-                        android:textColor="@color/textHint"
-                        android:textSize="13sp" />
-
-                    <TextView
-                        android:id="@+id/me_integral"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:text="1000"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <ImageView
