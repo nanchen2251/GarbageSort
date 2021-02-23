@@ -6,12 +6,13 @@ import cn.bingoogolapple.baseadapter.BGARecyclerViewAdapter
 import cn.bingoogolapple.baseadapter.BGAViewHolderHelper
 import cn.bingoogolapple.photopicker.widget.BGANinePhotoLayout
 import com.hongmei.garbagesort.R
+import com.hongmei.garbagesort.bean.UserType
 
 /**
  * Date: 2021-02-18
  * Desc:
  */
-class DeclareAdapter(recyclerView: RecyclerView, private val delegate: BGANinePhotoLayout.Delegate, private val isExecutor: Boolean) :
+class DeclareAdapter(recyclerView: RecyclerView, private val delegate: BGANinePhotoLayout.Delegate, private val userType: Int) :
     BGARecyclerViewAdapter<DeclareInfo>(recyclerView, R.layout.declare_item) {
 
     override fun fillData(helper: BGAViewHolderHelper?, position: Int, model: DeclareInfo?) {
@@ -28,6 +29,25 @@ class DeclareAdapter(recyclerView: RecyclerView, private val delegate: BGANinePh
         ninePhotoLayout.setDelegate(delegate)
         ninePhotoLayout.data = model.photos
         helper.setText(R.id.declare_address, model.address)
-        helper.setVisibility(R.id.declare_image_done, if (model.done && !isExecutor) View.VISIBLE else View.GONE)
+        when (userType) {
+            UserType.GENERAL -> {
+                // 普通人员看不到图片
+                helper.setVisibility(R.id.declare_image_done, View.GONE)
+            }
+            UserType.EXECUTOR -> {
+                // 执行人员可以看到待处理和已处理
+                helper.setVisibility(R.id.declare_image_done, View.VISIBLE)
+                helper.setImageResource(R.id.declare_image_done, if (model.done) R.drawable.img_done else R.drawable.img_need_do)
+            }
+            else -> {
+                // 其他人员只可以看到已处理
+                if (model.done) {
+                    helper.setVisibility(R.id.declare_image_done, View.VISIBLE)
+                    helper.setImageResource(R.id.declare_image_done, R.drawable.img_done)
+                } else {
+                    helper.setVisibility(R.id.declare_image_done, View.GONE)
+                }
+            }
+        }
     }
 }

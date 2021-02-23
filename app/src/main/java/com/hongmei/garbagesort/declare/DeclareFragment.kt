@@ -41,8 +41,7 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
         // 信息展示
         declareRv.layoutManager = LinearLayoutManager(context)
         // 除了执行人员都可以看到是否已处理的状态
-        val isExecutor = appViewModel.userinfo.value?.type == UserType.EXECUTOR
-        adapter = DeclareAdapter(declareRv, this, isExecutor)
+        adapter = DeclareAdapter(declareRv, this, appViewModel.userinfo.value?.type ?: UserType.GENERAL)
         declareRv.adapter = adapter
         declareRv.addOnScrollListener(BGARVOnScrollListener(activity))
 
