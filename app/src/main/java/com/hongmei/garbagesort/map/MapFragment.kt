@@ -196,6 +196,22 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
         greenMarkerList.clear()
         greyMarkerList.clear()
 
+        // 增加假的坐标点
+        addFakePointData(center)
+
+        // 增加几个真实坐标点
+        addRealPointData()
+        allMarkerList.addAll(blueMarkerList)
+        allMarkerList.addAll(greenMarkerList)
+        allMarkerList.addAll(redMarkerList)
+        allMarkerList.addAll(greyMarkerList)
+        addMarkers(mapSpinner.selectedIndex)
+    }
+
+    /**
+     * 增加假的垃圾桶信息位置，采用随机算法
+     */
+    private fun addFakePointData(center: LatLng) {
         // 生成随机数
         val latNums = ArrayList<Int>()
         val lngNums = ArrayList<Int>()
@@ -222,15 +238,11 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
             // 单数只有双色垃圾桶
             addPointData(pointList[i], i % 2 == 0)
         }
-        // 增加几个真实坐标点
-        addRealPointData()
-        allMarkerList.addAll(blueMarkerList)
-        allMarkerList.addAll(greenMarkerList)
-        allMarkerList.addAll(redMarkerList)
-        allMarkerList.addAll(greyMarkerList)
-        addMarkers(mapSpinner.selectedIndex)
     }
 
+    /**
+     * 增加真的垃圾桶信息位置
+     */
     private fun addRealPointData() {
         // 垃圾桶上传真实定位，示例经纬度如下：
         // 四色桶：点1：102.65361，25.050318；点2：102.653768，25.051373
@@ -241,7 +253,9 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
         addPointData(LatLng(25.056222, 102.658798), false)
     }
 
-
+    /**
+     * 增加垃圾桶位置，第一个参数是经纬度，第二个是是否是四色垃圾桶
+     */
     private fun addPointData(point: LatLng, isAllColor: Boolean) {
         var newPoint = point
         val marker = MarkerOptions()
