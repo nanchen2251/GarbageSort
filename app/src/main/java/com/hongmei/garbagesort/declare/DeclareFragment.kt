@@ -15,6 +15,7 @@ import com.hongmei.garbagesort.R
 import com.hongmei.garbagesort.base.BaseFragment
 import com.hongmei.garbagesort.bean.UserType
 import com.hongmei.garbagesort.declare.info.DeclareInfoActivity
+import com.hongmei.garbagesort.ext.showMessage
 import com.hongmei.garbagesort.ext.toastNormal
 import com.hongmei.garbagesort.ext.visible
 import com.tbruyelle.rxpermissions3.RxPermissions
@@ -45,7 +46,8 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
         // 信息展示
         declareRv.layoutManager = LinearLayoutManager(context)
         // 除了执行人员都可以看到是否已处理的状态
-        adapter = DeclareAdapter(declareRv, this, appViewModel.userinfo.value?.type ?: UserType.GENERAL)
+        adapter =
+            DeclareAdapter(declareRv, this, appViewModel.userinfo.value?.type ?: UserType.GENERAL)
         declareRv.adapter = adapter
         declareRv.addOnScrollListener(BGARVOnScrollListener(activity))
 
@@ -65,10 +67,22 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
                         toastNormal("本条信息已处理，仅未处理可以点击")
                     } else {
                         currentClickPosition = position
-                        DeclareProcessActivity.startActivityForResult(this@DeclareFragment, model, REQUEST_CODE_PROCESS)
+                        DeclareProcessActivity.startActivityForResult(
+                            this@DeclareFragment,
+                            model,
+                            REQUEST_CODE_PROCESS
+                        )
                     }
                 }
             })
+        }
+        adapter?.setOnItemChildClickListener { _, childView, position ->
+            if (childView?.id == R.id.declare_delete) {
+                showMessage("确定要删除这条内容吗？", positiveAction = {
+                    adapter?.data?.removeAt(position)
+                    adapter?.notifyItemRemoved(position)
+                }, negativeButtonText = "取消")
+            }
         }
     }
 
@@ -82,9 +96,9 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
                 "无投放公示栏，无投放指示牌，未按规定投放四色桶，未分类收集",
                 "云路裕庭",
                 arrayListOf(
-                        "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcWlTBQtInMHOge31rRUvYc5.forp5G0N2A9TZOvimDCAI4nqk58KMGczdg*EekensZ3llUY1XWaIKobL3F4TC84!/b&bo=nwU4BAAAAAABJ6Y!&rf=viewer_4",
-                        "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcWlTBQtInMHOge31rRUvYc6q3KS1KwAbdhlAfvn7RGwlSKR2GeanSSLAmuIUxFdSPKQSdVOPk20QrBKCoPIUqQ0!/b&bo=nwU4BAAAAAABJ6Y!&rf=viewer_4",
-                        "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcTeW3Mw2l9tD9xwtNl210WclNdxdwzU6SokdOYN268JNwFhV2IHF2dkEqZO4KdIXb7SiPNxgCmsVISOFAwFQRDw!/b&bo=nwU4BAAAAAABJ6Y!&rf=viewer_4"
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcWlTBQtInMHOge31rRUvYc5.forp5G0N2A9TZOvimDCAI4nqk58KMGczdg*EekensZ3llUY1XWaIKobL3F4TC84!/b&bo=nwU4BAAAAAABJ6Y!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcWlTBQtInMHOge31rRUvYc6q3KS1KwAbdhlAfvn7RGwlSKR2GeanSSLAmuIUxFdSPKQSdVOPk20QrBKCoPIUqQ0!/b&bo=nwU4BAAAAAABJ6Y!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcTeW3Mw2l9tD9xwtNl210WclNdxdwzU6SokdOYN268JNwFhV2IHF2dkEqZO4KdIXb7SiPNxgCmsVISOFAwFQRDw!/b&bo=nwU4BAAAAAABJ6Y!&rf=viewer_4"
                 ),
                 false
             )
@@ -95,7 +109,10 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
                 "高新区税务局",
                 arrayListOf(
                     "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcY8krtlzerGA.hWnC.keSLzNjbpZ1C4HZ4iVsFoI8MarXZQPhBbjSS9IiF6MBQCf8dGJuKuGOBgnVv9K8uQUiAI!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
-                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcY8krtlzerGA.hWnC.keSLwoBCg25*3LoouMr3WtHaUO6GCGCmIVibEtoJrnstiNpt4Qo8gSfJu4AdVmEEy2wCw!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4", "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcY8krtlzerGA.hWnC.keSLxPsJqu7Xe0LmSokr9wrwYIk10dZQ5aCCPNcFPJn6P5Jcp04QpgA8Y0h.jgAYt*e2g!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4","http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcWlTBQtInMHOge31rRUvYc7Io2PBr8iAKtcznkeB9LxFyz7OAEBYXwFye2bLxB9qEh6g377rcVnQVAFZL7jZlAU!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4","http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcWlTBQtInMHOge31rRUvYc5F6LyamP26Rgm4Q*ghWOxlqdWjyFCq8oPDZFV4VwAYnDRhxqnu578dUUU0EipIsIk!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4"
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcY8krtlzerGA.hWnC.keSLwoBCg25*3LoouMr3WtHaUO6GCGCmIVibEtoJrnstiNpt4Qo8gSfJu4AdVmEEy2wCw!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcY8krtlzerGA.hWnC.keSLxPsJqu7Xe0LmSokr9wrwYIk10dZQ5aCCPNcFPJn6P5Jcp04QpgA8Y0h.jgAYt*e2g!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcWlTBQtInMHOge31rRUvYc7Io2PBr8iAKtcznkeB9LxFyz7OAEBYXwFye2bLxB9qEh6g377rcVnQVAFZL7jZlAU!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcWlTBQtInMHOge31rRUvYc5F6LyamP26Rgm4Q*ghWOxlqdWjyFCq8oPDZFV4VwAYnDRhxqnu578dUUU0EipIsIk!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4"
                 ), true
             )
         )
@@ -201,10 +218,10 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
                 "无投放指示牌，未分类收集",
                 "公园1903",
                 arrayListOf(
-                        "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/ruAMsa53pVQWN7FLK88i5gqUwTbDQylMRHrAS7fIVfIR9j7uXBPKqxxTMk5MC6ZTPI6YE*DRdWCz37aa9iPWSdkTUiI.g.mcZXuo6cuy0bw!/b&bo=oAU4BAAAAAABB7k!&rf=viewer_4",
-                        "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mccqACifyLKA7MQ3Aan5sJ2jbm8dc9lD5SQvOlc65uhr5cjnue6wu*BkI1rnEkBbfaPFpgK26LGfYbHg*E1wRk20!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
-                        "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mccqACifyLKA7MQ3Aan5sJ2gABtwgtJDjOsZQM4jAxPFvYqPD8nRFU5Pki4M*FNhkNXjqgzKILbzUpsUFGBYQKzI!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4",
-                        "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mccqACifyLKA7MQ3Aan5sJ2gABtwgtJDjOsZQM4jAxPFvYqPD8nRFU5Pki4M*FNhkNXjqgzKILbzUpsUFGBYQKzI!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4"
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/ruAMsa53pVQWN7FLK88i5gqUwTbDQylMRHrAS7fIVfIR9j7uXBPKqxxTMk5MC6ZTPI6YE*DRdWCz37aa9iPWSdkTUiI.g.mcZXuo6cuy0bw!/b&bo=oAU4BAAAAAABB7k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mccqACifyLKA7MQ3Aan5sJ2jbm8dc9lD5SQvOlc65uhr5cjnue6wu*BkI1rnEkBbfaPFpgK26LGfYbHg*E1wRk20!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mccqACifyLKA7MQ3Aan5sJ2gABtwgtJDjOsZQM4jAxPFvYqPD8nRFU5Pki4M*FNhkNXjqgzKILbzUpsUFGBYQKzI!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mccqACifyLKA7MQ3Aan5sJ2gABtwgtJDjOsZQM4jAxPFvYqPD8nRFU5Pki4M*FNhkNXjqgzKILbzUpsUFGBYQKzI!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4"
                 ), true
             )
         )
@@ -251,49 +268,49 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
             )
         )
         infoList.add(
-                DeclareInfo(
-                        "未分类收集，分类桶未密闭",
-                        "后新街小区",
-                        arrayListOf(
-                                "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcSxwVb9B*ry8oioyjFH6T458bE4iGwYOtzj5LAQc3BlvwD9P5lloJsurY5hwXcC4EFx3y9UnXdV6HHKWFAj0ams!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
-                                "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcSxwVb9B*ry8oioyjFH6T45Wllukbir8DT1LmcAlXJp83Dqk.NjlEdtNBQzkZVdMAEhZJW1ZA2y17sVNyA3vr7Y!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
-                                "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcSxwVb9B*ry8oioyjFH6T47ImIV8.jRWmmMd89ZpVMI1nbsWmEPXXQXfc1SANFL6bvF1XVZG4TVwMInD**oUcsY!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4"
-                        ), true
-                )
+            DeclareInfo(
+                "未分类收集，分类桶未密闭",
+                "后新街小区",
+                arrayListOf(
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcSxwVb9B*ry8oioyjFH6T458bE4iGwYOtzj5LAQc3BlvwD9P5lloJsurY5hwXcC4EFx3y9UnXdV6HHKWFAj0ams!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcSxwVb9B*ry8oioyjFH6T45Wllukbir8DT1LmcAlXJp83Dqk.NjlEdtNBQzkZVdMAEhZJW1ZA2y17sVNyA3vr7Y!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcSxwVb9B*ry8oioyjFH6T47ImIV8.jRWmmMd89ZpVMI1nbsWmEPXXQXfc1SANFL6bvF1XVZG4TVwMInD**oUcsY!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4"
+                ), true
+            )
         )
         infoList.add(
-                DeclareInfo(
-                        "无投放指示牌",
-                        "茶花公园",
-                        arrayListOf(
-                                "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcVrHL9o702E4QkeTvHvv9T9HFeuNQ02DkTrbq4KaW8lKhbi4jFAPICgFLPQG2MdVU59d5gtQEXkYJCN5bcgqNSc!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
-                                "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcVrHL9o702E4QkeTvHvv9T9ghWEFAHd.5*KoqjMWK3rbLDR8uSkQ4ZxredqqwTswIa61SL4.y7Y0uZA3r*pPUZc!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
-                                "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcVrHL9o702E4QkeTvHvv9T*UCcQRwz6WSEogcVMCurolAhFxf8vIzkDHBzv7gTdRYdCBfbRD26eWFdEx.HImJ9g!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4"
-                        ), true
-                )
+            DeclareInfo(
+                "无投放指示牌",
+                "茶花公园",
+                arrayListOf(
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcVrHL9o702E4QkeTvHvv9T9HFeuNQ02DkTrbq4KaW8lKhbi4jFAPICgFLPQG2MdVU59d5gtQEXkYJCN5bcgqNSc!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcVrHL9o702E4QkeTvHvv9T9ghWEFAHd.5*KoqjMWK3rbLDR8uSkQ4ZxredqqwTswIa61SL4.y7Y0uZA3r*pPUZc!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcVrHL9o702E4QkeTvHvv9T*UCcQRwz6WSEogcVMCurolAhFxf8vIzkDHBzv7gTdRYdCBfbRD26eWFdEx.HImJ9g!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4"
+                ), true
+            )
         )
         infoList.add(
-                DeclareInfo(
-                        "无投放指示牌",
-                        "云南民族村广场",
-                        arrayListOf(
-                                "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcUxi9XAHNr6cJdx1SzxslbWRJSv8fAn.AGxHWwzXlYUOiSZdej13pxRfKnOJPGLyinehf44yOgnYN*DcDJoVjuY!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4",
-                                "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcVrHL9o702E4QkeTvHvv9T*0HrzAKfFJThYrxlUtu4KNpGTShs3tEhxD*wmrsPHN7pnrzBAYaRbqupABC*i9Lzo!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4"
-                        ), true
-                )
+            DeclareInfo(
+                "无投放指示牌",
+                "云南民族村广场",
+                arrayListOf(
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcUxi9XAHNr6cJdx1SzxslbWRJSv8fAn.AGxHWwzXlYUOiSZdej13pxRfKnOJPGLyinehf44yOgnYN*DcDJoVjuY!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcVrHL9o702E4QkeTvHvv9T*0HrzAKfFJThYrxlUtu4KNpGTShs3tEhxD*wmrsPHN7pnrzBAYaRbqupABC*i9Lzo!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4"
+                ), true
+            )
         )
         infoList.add(
-                DeclareInfo(
-                        "未分类收集，分类桶未密闭，摆放不整齐",
-                        "昆明市呈贡区审计局",
-                        arrayListOf(
-                                "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcbxeZ7YoDkiIFky5y.pzUK6DdhDf8.oxl.7buiceTbdFr*btTIfyrAHoVspAD4MpKRFE6caZ6jFfBEunTqsNk0w!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4",
-                                "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcbxeZ7YoDkiIFky5y.pzUK5KfPTEuDMfeMY3Ps9NAIy14qlKG2wrqtvOIG7ga5TvYkJNItFg33YarIHrnyOBmfc!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
-                                "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcUxi9XAHNr6cJdx1SzxslbUBZ6jPrstDPhbxW2Zzi5tYuNkqJS9sBbuE8tVX1vIDfyXV3IbUp2NuqHKlFSIRcm8!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4",
-                                "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcUxi9XAHNr6cJdx1SzxslbXX.47Cs3c043sDeaZkiZhOETDEvCnYHgFKXp4DeivLPuzZknaRNwru0k0bjSFMzVs!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4",
-                                "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcUxi9XAHNr6cJdx1SzxslbXBrd6cXejOaToKyKx51S0jjMUedYJC69Q4LPtzi1rmIcIT3ajwo.BZ*c6OQNGUHPg!/b&bo=oAU4BAAAAAABN4k!&rf=viewer_4"
-                        ), true
-                )
+            DeclareInfo(
+                "未分类收集，分类桶未密闭，摆放不整齐",
+                "昆明市呈贡区审计局",
+                arrayListOf(
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcbxeZ7YoDkiIFky5y.pzUK6DdhDf8.oxl.7buiceTbdFr*btTIfyrAHoVspAD4MpKRFE6caZ6jFfBEunTqsNk0w!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcbxeZ7YoDkiIFky5y.pzUK5KfPTEuDMfeMY3Ps9NAIy14qlKG2wrqtvOIG7ga5TvYkJNItFg33YarIHrnyOBmfc!/b&bo=oAU4BAAAAAABF6k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcUxi9XAHNr6cJdx1SzxslbUBZ6jPrstDPhbxW2Zzi5tYuNkqJS9sBbuE8tVX1vIDfyXV3IbUp2NuqHKlFSIRcm8!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcUxi9XAHNr6cJdx1SzxslbXX.47Cs3c043sDeaZkiZhOETDEvCnYHgFKXp4DeivLPuzZknaRNwru0k0bjSFMzVs!/b&bo=oAU4BAAAAAABJ5k!&rf=viewer_4",
+                    "http://m.qpic.cn/psc?/V546uaiN3WTFLG2vp4Cm0byXzu2SNWOD/45NBuzDIW489QBoVep5mcUxi9XAHNr6cJdx1SzxslbXBrd6cXejOaToKyKx51S0jjMUedYJC69Q4LPtzi1rmIcIT3ajwo.BZ*c6OQNGUHPg!/b&bo=oAU4BAAAAAABN4k!&rf=viewer_4"
+                ), true
+            )
         )
         val photos = ArrayList<String>()
         for (i in 1..18) {
@@ -304,7 +321,13 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
     }
 
 
-    override fun onClickNinePhotoItem(ninePhotoLayout: BGANinePhotoLayout?, view: View?, position: Int, model: String?, models: MutableList<String>?) {
+    override fun onClickNinePhotoItem(
+        ninePhotoLayout: BGANinePhotoLayout?,
+        view: View?,
+        position: Int,
+        model: String?,
+        models: MutableList<String>?
+    ) {
         currentPhotoLayout = ninePhotoLayout
         photoPreviewWrapper()
     }
@@ -315,7 +338,8 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe {
                     if (it) {
-                        val photoPreviewIntentBuilder = BGAPhotoPreviewActivity.IntentBuilder(activity)
+                        val photoPreviewIntentBuilder =
+                            BGAPhotoPreviewActivity.IntentBuilder(activity)
                         if (currentPhotoLayout.itemCount == 1) {
                             // 预览单张图片
                             photoPreviewIntentBuilder.previewPhoto(currentPhotoLayout.currentClickItem)
@@ -331,7 +355,13 @@ class DeclareFragment : BaseFragment<DeclareViewModel>(), BGANinePhotoLayout.Del
 
     }
 
-    override fun onClickExpand(ninePhotoLayout: BGANinePhotoLayout?, view: View?, position: Int, model: String?, models: MutableList<String>?) {
+    override fun onClickExpand(
+        ninePhotoLayout: BGANinePhotoLayout?,
+        view: View?,
+        position: Int,
+        model: String?,
+        models: MutableList<String>?
+    ) {
         ninePhotoLayout?.setIsExpand(true)
         ninePhotoLayout?.flushItems()
     }

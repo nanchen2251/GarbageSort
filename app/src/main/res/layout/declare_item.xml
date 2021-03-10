@@ -65,6 +65,17 @@
         tools:text="测试地址" />
 
     <ImageView
+        android:id="@+id/declare_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/declare_photos"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="15dp"
+        android:padding="5dp"
+        android:src="@drawable/ic_delete" />
+
+    <ImageView
         android:id="@+id/declare_image_done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

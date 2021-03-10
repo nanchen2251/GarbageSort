@@ -12,8 +12,16 @@ import com.hongmei.garbagesort.bean.UserType
  * Date: 2021-02-18
  * Desc:
  */
-class DeclareAdapter(recyclerView: RecyclerView, private val delegate: BGANinePhotoLayout.Delegate, private val userType: Int) :
-    BGARecyclerViewAdapter<DeclareInfo>(recyclerView, R.layout.declare_item) {
+class DeclareAdapter(
+    recyclerView: RecyclerView,
+    private val delegate: BGANinePhotoLayout.Delegate,
+    private val userType: Int
+) : BGARecyclerViewAdapter<DeclareInfo>(recyclerView, R.layout.declare_item) {
+
+    override fun setItemChildListener(helper: BGAViewHolderHelper?, viewType: Int) {
+        super.setItemChildListener(helper, viewType)
+        helper?.setItemChildClickListener(R.id.declare_delete)
+    }
 
     override fun fillData(helper: BGAViewHolderHelper?, position: Int, model: DeclareInfo?) {
         if (helper == null || model == null) {
@@ -38,7 +46,10 @@ class DeclareAdapter(recyclerView: RecyclerView, private val delegate: BGANinePh
             UserType.EXECUTOR -> {
                 // 执行人员可以看到待处理和已处理
                 helper.setVisibility(R.id.declare_image_done, View.VISIBLE)
-                helper.setImageResource(R.id.declare_image_done, if (model.done) R.drawable.img_done else R.drawable.img_need_do)
+                helper.setImageResource(
+                    R.id.declare_image_done,
+                    if (model.done) R.drawable.img_done else R.drawable.img_need_do
+                )
             }
             else -> {
                 // 其他人员只可以看到已处理
@@ -48,6 +59,15 @@ class DeclareAdapter(recyclerView: RecyclerView, private val delegate: BGANinePh
                 } else {
                     helper.setVisibility(R.id.declare_image_done, View.GONE)
                 }
+            }
+        }
+        when (userType) {
+            UserType.EXECUTOR, UserType.SUPERVISOR -> {
+                // 监察和执行人员可以看到删除和处理
+                helper.setVisibility(R.id.declare_delete, View.VISIBLE)
+            }
+            else -> {
+                helper.setVisibility(R.id.declare_delete, View.GONE)
             }
         }
     }
