@@ -38,7 +38,7 @@ class MineFragment : BaseFragment<MineViewModel>() {
         mineNickNameText.text = appViewModel.userinfo.value?.nickname ?: "-"
         mineTipsText.text = when (appViewModel.userinfo.value?.type) {
             UserType.GOVERNMENT -> "政府人员"
-            UserType.EXECUTOR -> "这行人员"
+            UserType.EXECUTOR -> "执行人员"
             UserType.GENERAL -> "普通用户"
             UserType.SUPERVISOR -> "监察人员"
             else -> "查看并编辑个人资料"

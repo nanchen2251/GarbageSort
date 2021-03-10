@@ -13,6 +13,7 @@ import com.hongmei.garbagesort.util.CacheUtil
 import com.hongmei.garbagesort.util.SettingUtil
 import com.tbruyelle.rxpermissions3.RxPermissions
 import com.zhpan.bannerview.BannerViewPager
+import kotlinx.android.synthetic.main.banner_itemwelcome.*
 import kotlinx.android.synthetic.main.welcome_activity.*
 import me.hgj.jetpackmvvm.base.viewmodel.BaseViewModel
 import me.hgj.jetpackmvvm.ext.view.gone
@@ -33,28 +34,30 @@ class WelcomeActivity : BaseActivity<BaseViewModel>() {
         bannerViewPager = findViewById(R.id.bannerVp)
         welcomeBaseView.setBackgroundColor(SettingUtil.getColor(this))
         initPermissions()
-        if (CacheUtil.isFirst()) {
-            // 是第一次打开App 显示引导页
-            welcomeImage.gone()
-            welcomeJumpText.gone()
-            bannerViewPager.apply {
-                adapter = WelcomeBannerAdapter()
-                setLifecycleRegistry(lifecycle)
-                registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                    override fun onPageSelected(position: Int) {
-                        super.onPageSelected(position)
-                        if (position == resList.size - 1) {
-                            welcomeJoin.visible()
-                        } else {
-                            welcomeJoin.gone()
-                        }
-                    }
-                })
-                create(resList.toList())
-            }
-        } else {
+        // 不再需要引导功能
+//        if (CacheUtil.isFirst()) {
+//            // 是第一次打开App 显示引导页
+//            welcomeImage.gone()
+//            welcomeJumpText.gone()
+//            bannerViewPager.apply {
+//                adapter = WelcomeBannerAdapter()
+//                setLifecycleRegistry(lifecycle)
+//                registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+//                    override fun onPageSelected(position: Int) {
+//                        super.onPageSelected(position)
+//                        if (position == resList.size - 1) {
+//                            welcomeJoin.visible()
+//                        } else {
+//                            welcomeJoin.gone()
+//                        }
+//                    }
+//                })
+//                create(resList.toList())
+//            }
+//        } else {
             // 不是第一次打开App 1.5秒后自动跳转到主页
-            welcomeImage.visible()
+            welcomeImage.gone()
+            bannerText.text = "欢迎使用\n垃圾分类宝"
             welcomeJumpText.visible()
             bannerViewPager.postDelayed({
                 toSecondPage()
@@ -62,7 +65,7 @@ class WelcomeActivity : BaseActivity<BaseViewModel>() {
             welcomeJumpText.setOnClickListener {
                 toSecondPage()
             }
-        }
+//        }
         welcomeJoin.setOnClickListener {
             toSecondPage()
         }

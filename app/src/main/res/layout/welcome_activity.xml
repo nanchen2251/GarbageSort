@@ -50,6 +50,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <include layout="@layout/banner_itemwelcome"/>
+
     <TextView
         android:id="@+id/welcomeJumpText"
         android:layout_width="70dp"

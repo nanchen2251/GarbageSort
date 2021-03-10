@@ -23,7 +23,7 @@ class BriefingActivity : BaseActivity<BaseViewModel>() {
         appViewModel.appColor.value?.let {
             toolbar.setBackgroundColor(it)
         }
-        val title = intent.getStringExtra(TITLE) ?: "监管报告"
+        val title = intent.getStringExtra(TITLE) ?: "监管简报"
         val pdfName = intent.getStringExtra(PDFNAME) ?: return
         toolbar.initClose(title) {
             finish()

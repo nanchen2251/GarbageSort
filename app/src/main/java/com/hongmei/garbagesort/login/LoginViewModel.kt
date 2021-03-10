@@ -24,7 +24,7 @@ class LoginViewModel : BaseViewModel() {
             return false
         }
         // 测试数据，账号密码均为 123456 才可以登录
-        if (username != "123456" || password != "123456") {
+        if (username != "李红梅" || password != "123456") {
             toastError("账号或者密码不正确！")
             return false
         }
