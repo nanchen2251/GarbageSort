@@ -33,7 +33,8 @@ import kotlin.random.Random
  * Date: 2021-02-02
  * Desc: 地图页面
  */
-class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarkerClickListener, AMap.OnInfoWindowClickListener {
+class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarkerClickListener,
+    AMap.OnInfoWindowClickListener {
     // 测试数据 蓝垃圾桶位置
     private val blueMarkerList = ArrayList<MarkerOptions>()
 
@@ -82,9 +83,10 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
         locationClient.setLocationOption(locationOption)
         val typeList = listOf("展示所有垃圾桶", "仅展示可回收垃圾桶", "仅展示有害垃圾桶", "仅展示厨余垃圾桶", "仅展示其他垃圾桶")
         mapSpinner.attachDataSource(typeList)
-        mapSpinner.onSpinnerItemSelectedListener = OnSpinnerItemSelectedListener { _, _, position, _ ->
-            addMarkers(position)
-        }
+        mapSpinner.onSpinnerItemSelectedListener =
+            OnSpinnerItemSelectedListener { _, _, position, _ ->
+                addMarkers(position)
+            }
         mapView.map.setOnMarkerClickListener(this)
         mapView.map.addOnInfoWindowClickListener(this)
     }
@@ -132,7 +134,8 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
                 breatheMarker = MarkerOptions()
                     .position(latLng)
                     .zIndex(1f)
-                    .anchor(0.5f, 0.5f).icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_circle_64))
+                    .anchor(0.5f, 0.5f)
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker_circle_64))
                 // 中心的marker
                 breatheMarkerCenter = MarkerOptions()
                     .position(latLng)
@@ -171,7 +174,8 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
         }
         // 切换到定位中心点
         val center = LatLng(aMapLocation.latitude, aMapLocation.longitude)
-        val newCameraPosition = CameraUpdateFactory.newCameraPosition(CameraPosition(center, 17F, 30F, 0F))
+        val newCameraPosition =
+            CameraUpdateFactory.newCameraPosition(CameraPosition(center, 17F, 30F, 0F))
         changeCamera(newCameraPosition)
         if (GlobalData.currentLocation == null) {
             // 垃圾桶数据
@@ -186,11 +190,11 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
     }
 
     private fun initMarkerListFromCenter(center: LatLng) {
-        blueMarkerList.clear()
         allMarkerList.clear()
-        greyMarkerList.clear()
         blueMarkerList.clear()
         redMarkerList.clear()
+        greenMarkerList.clear()
+        greyMarkerList.clear()
 
         // 生成随机数
         val latNums = ArrayList<Int>()
@@ -216,48 +220,63 @@ class MapFragment : BaseFragment<MapViewModel>(), AMapLocationListener, OnMarker
         for (i in 0 until pointList.size) {
             // 双数为四色垃圾桶
             // 单数只有双色垃圾桶
-            var newPoint = pointList[i]
-            val marker = MarkerOptions()
-                .position(newPoint)
-                .draggable(true)
-                .title("到这去")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_trash_blue))
-            blueMarkerList.add(marker)
-
-            if (i % 2 == 0) {
-                newPoint = LatLng(newPoint.latitude, newPoint.longitude - 0.0002)
-                redMarkerList.add(
-                    MarkerOptions()
-                        .position(newPoint)
-                        .draggable(true)
-                        .title("到这去")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_trash_red))
-                )
-
-                newPoint = LatLng(newPoint.latitude, newPoint.longitude - 0.0002)
-                greenMarkerList.add(
-                    MarkerOptions()
-                        .position(newPoint)
-                        .draggable(true)
-                        .title("到这去")
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_trash_green))
-                )
-            }
-
-            newPoint = LatLng(newPoint.latitude, newPoint.longitude - 0.0002)
-            greyMarkerList.add(
-                MarkerOptions()
-                    .position(newPoint)
-                    .draggable(true)
-                    .title("到这去")
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_trash_grey))
-            )
+            addPointData(pointList[i], i % 2 == 0)
         }
+        // 增加几个真实坐标点
+        addRealPointData()
         allMarkerList.addAll(blueMarkerList)
         allMarkerList.addAll(greenMarkerList)
         allMarkerList.addAll(redMarkerList)
         allMarkerList.addAll(greyMarkerList)
         addMarkers(mapSpinner.selectedIndex)
+    }
+
+    private fun addRealPointData() {
+        // 垃圾桶上传真实定位，示例经纬度如下：
+        // 四色桶：点1：102.65361，25.050318；点2：102.653768，25.051373
+        // 两色桶：点1：102.65943，25.049775；点2：102.658798，25.056222
+        addPointData(LatLng(25.050318, 102.65361), true)
+        addPointData(LatLng(25.051373, 102.653768), true)
+        addPointData(LatLng(25.049775, 102.65943), false)
+        addPointData(LatLng(25.056222, 102.658798), false)
+    }
+
+
+    private fun addPointData(point: LatLng, isAllColor: Boolean) {
+        var newPoint = point
+        val marker = MarkerOptions()
+            .position(newPoint)
+            .draggable(true)
+            .title("到这去")
+            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_trash_blue))
+        blueMarkerList.add(marker)
+
+        if (isAllColor) {
+            newPoint = LatLng(newPoint.latitude, newPoint.longitude - 0.0002)
+            redMarkerList.add(
+                MarkerOptions()
+                    .position(newPoint)
+                    .draggable(true)
+                    .title("到这去")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_trash_red))
+            )
+            newPoint = LatLng(newPoint.latitude, newPoint.longitude - 0.0002)
+            greenMarkerList.add(
+                MarkerOptions()
+                    .position(newPoint)
+                    .draggable(true)
+                    .title("到这去")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_trash_green))
+            )
+        }
+        newPoint = LatLng(newPoint.latitude, newPoint.longitude - 0.0002)
+        greyMarkerList.add(
+            MarkerOptions()
+                .position(newPoint)
+                .draggable(true)
+                .title("到这去")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_trash_grey))
+        )
     }
 
 

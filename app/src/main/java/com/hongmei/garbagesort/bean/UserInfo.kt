@@ -3,11 +3,6 @@ package com.hongmei.garbagesort.bean
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-/**
- * 作者　: hegaojian
- * 时间　: 2019/12/23
- * 描述　: 账户信息
- */
 @Parcelize
 data class UserInfo(
     var admin: Boolean = false,
