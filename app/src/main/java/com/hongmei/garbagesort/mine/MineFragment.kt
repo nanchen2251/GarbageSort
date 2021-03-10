@@ -37,7 +37,7 @@ class MineFragment : BaseFragment<MineViewModel>() {
     override fun initView(savedInstanceState: Bundle?) {
         mineNickNameText.text = appViewModel.userinfo.value?.nickname ?: "-"
         mineTipsText.text = when (appViewModel.userinfo.value?.type) {
-            UserType.GOVERNMENT -> "政府人员"
+            UserType.GOVERNMENT -> "政府管理人员"
             UserType.EXECUTOR -> "执行人员"
             UserType.GENERAL -> "普通用户"
             UserType.SUPERVISOR -> "监察人员"
@@ -64,7 +64,7 @@ class MineFragment : BaseFragment<MineViewModel>() {
                 BriefingActivity.start(this, "申报统计", "statistics.pdf")
             }
         }
-        // 只有政府人员可以看到申报统计
+        // 只有政府管理人员可以看到申报统计
         mineStatisticsLayout.visible(appViewModel.userinfo.value?.type == UserType.GOVERNMENT)
         mineFavoriteLayout.setOnClickListener {
             toastNormal("我的收藏功能暂未开通")

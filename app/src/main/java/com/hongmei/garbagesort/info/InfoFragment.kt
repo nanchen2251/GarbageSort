@@ -73,7 +73,7 @@ class InfoFragment : BaseFragment<InfoViewModel>() {
         addTestData()
 
 
-        // 政府人员展示上报监管简报的入口
+        // 政府管理人员展示上报监管简报的入口
         infoUploadBtn.visible(appViewModel.userinfo.value?.type == UserType.GOVERNMENT)
         infoUploadBtn.setOnClickListener {
             // 点击上报监管简报
